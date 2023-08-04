@@ -1,0 +1,12 @@
+.header-image img {
+    width: 100%;
+    height: 50vw;
+    position: relative;
+    margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+    .header-image img {
+        margin-top: 5rem;
+    }
+}

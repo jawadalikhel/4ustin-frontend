@@ -1,0 +1,30 @@
+/* Box.css */
+.box {
+    width: 25%; /* Set initial width for desktop layout */
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .box img {
+    width: 100%;
+    height: auto;
+  }
+
+  .box p {
+    font-size: 1vw;
+  }
+
+  @media (max-width: 768px) {
+    .box {
+      /* Set width for mobile layout (2 boxes per row) */
+      width: 50%; 
+    }
+
+    .box h3 {
+      font-size: 4vw;
+    }
+  
+    .box p {
+      font-size: 2vw;
+    }
+  }

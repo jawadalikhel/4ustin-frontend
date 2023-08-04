@@ -1,0 +1,44 @@
+.submit-pictures-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto; /* Center the component horizontally on larger screens */
+}
+
+.submit-pictures-box img {
+    width: 20vw;
+    margin-right: 15vw;
+}
+  
+.content {
+    flex: 1;
+ }
+  
+ .content h1 {
+    font-size: 3vw;
+    margin: 0;
+}
+
+.content p {
+    font-size: 1vw;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+    .submit-pictures-box img {
+        margin-bottom: 10px;
+    }
+
+    .content h1 {
+        font-size: 4vw;
+        margin: 0;
+    }
+    
+    .content p {
+        font-size: 2vw;
+    }
+}
+  
