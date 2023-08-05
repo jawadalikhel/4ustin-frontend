@@ -6,6 +6,8 @@
     padding: 20px;
     width: 100%;
     margin: 0 auto; /* Center the component horizontally on larger screens */
+    text-decoration: none;
+    color: black;
 }
 
 .submit-pictures-box img {

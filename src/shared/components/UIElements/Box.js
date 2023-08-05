@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import './Styles/Box.css'; // Create this CSS file to style the box
 
 const Box = (props) => {
+  console.log(props, ">------ props")
   return (
-    <div className="box">
-      <img src={props.imageSrc} alt={props.title} />
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
-    </div>
+    
+      // <div >
+        <Link to={`/${props.url}`} className="box">
+          <img src={props.imageSrc} alt={props.title} />
+          <h3>{props.title}</h3>
+          <p>{props.description}</p>
+        </Link>
+      // </div>
   );
 };
 

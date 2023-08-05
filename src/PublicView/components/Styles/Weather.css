@@ -1,14 +1,26 @@
 /* Header.css */
 .weather {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px; */
-  }
-  
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; */
+}
+
+.weather-box {
+  /* background-color: #f0f0f0; */
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 8px;
+  /* margin-top: -23rem; */
+  /* text-align: center; */
+  /* position: relative; */
+}
+
+@media (max-width: 768px) {
   .weather-box {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 10px;
+    position: absolute;
+    margin-top: -23rem;
+    font-size: .8rem;
+    background-color: aliceblue;
   }
+}
