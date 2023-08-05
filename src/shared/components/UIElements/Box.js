@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './Styles/Box.css'; // Create this CSS file to style the box
 
 const Box = (props) => {
-  console.log(props, ">------ props")
   return (
     
       // <div >

@@ -19,7 +19,7 @@
 @media (max-width: 768px) {
   .weather-box {
     position: absolute;
-    margin-top: -23rem;
+    margin-top: -12.5rem;
     font-size: .8rem;
     background-color: aliceblue;
   }

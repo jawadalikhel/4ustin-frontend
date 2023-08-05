@@ -10,7 +10,6 @@ const Header = () => {
     `)
       .then(response => response.json())
       .then(data => {
-        console.log(data.weather[0].icon, ",----- dataaaa")
         setWeather(data)
       })
       .catch(err =>{

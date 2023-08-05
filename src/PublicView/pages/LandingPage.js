@@ -6,83 +6,125 @@ import Box from "../../shared/components/UIElements/Box";
 import "./styles/LandingPage.css";
 
 import ImageToBox from "../components/images/atx2.jpeg";
+import PlaceToEatImage from "../components/images/eat.jpeg";
+import shopLocalImage from "../components/images/shop.jpeg";
+import nightlifeImage from "../components/images/nightlife.jpeg";
+import outdoorImage from "../components/images/outdoor.jpeg";
+
+
 import Header from '../components/Header';
-import SubmitPictures from '../../shared/components/UIElements/FullScreenWeightBox';
+import FullScreenWeightBox from '../../shared/components/UIElements/FullScreenWeightBox';
 
 const DUMMY_DATA = [
   {
     id: "01",
-    image: ImageToBox,
+    image: PlaceToEatImage,
     title: "PLACES TO EAT",
     description: "From Fine Dining To Food Trucks",
     url: "eat"
   },
   {
     id: "02",
-    image: ImageToBox,
+    image: shopLocalImage,
     title: "SHOP LOCAL",
     description: "We're Called Weird For a reason",
     url: "shop"
   },
   {
     id: "03",
-    image: ImageToBox,
+    image: nightlifeImage,
     title: "NIGHTLIFE",
     description: "your Best Night In Austin",
     url: "nightlife"
   },
   {
     id: "04",
-    image: ImageToBox,
+    image: outdoorImage,
     title: "OUTDOORS",
     description: "From Bats to Water",
     url: "outdoors"
   },
 ];
 
-const submitPictures = {
-  id: "submitPictures01",
-  image: ImageToBox,
-  title: "SUBMIT YOUR PICTURES",
-  description: "Share the sights and sounds of your experience!",
-  url: "submit-pictures"
-}
-
-const austinite = {
-  id: "austinite01",
-  image: ImageToBox,
-  title: "VISIT LIKE AN AUSTINITE",
-  url: "austinite",
-  boxStyles: {
-    height: "15vw"
+const landingPageSectionBoxes = [
+  {
+    id: "submitPictures",
+    image: ImageToBox,
+    title: "SUBMIT YOUR PICTURES",
+    description: "Share the sights and sounds of your experience!",
+    url: "submit-pictures"
+  },
+  {
+    id: "austinite",
+    image: ImageToBox,
+    title: "VISIT LIKE AN AUSTINITE",
+    url: "austinite",
+    boxStyles: {
+      height: "15vw"
+    }
+  },
+  {
+    id: "thingsTodo",
+    image: ImageToBox,
+    title: "THINGS TO DO",
+    url: "thingsToDo",
+    boxStyles: {
+      height: "15vw"
+    }
+  },
+  {
+    id: "news",
+    title: "NEWS",
+    url: "news",
+    boxStyles: {
+      height: "50px"
+    }
   }
-}
+]
 
-const thingsToDo = {
-  id: "thingsTodo",
-  image: ImageToBox,
-  title: "THINGS TO DO",
-  url: "thingsToDo",
-  boxStyles: {
-    height: "15vw"
-  }
-}
 
-const news = {
-  id: "news01",
-  // image: ImageToBox,
-  title: "NEWS",
-  url: "news",
-  boxStyles: {
-    height: "50px"
-  }
-}
+// const submitPictures = {
+//   id: "submitPictures01",
+//   image: ImageToBox,
+//   title: "SUBMIT YOUR PICTURES",
+//   description: "Share the sights and sounds of your experience!",
+//   url: "submit-pictures"
+// }
+
+// const austinite = {
+//   id: "austinite01",
+//   image: ImageToBox,
+//   title: "VISIT LIKE AN AUSTINITE",
+//   url: "austinite",
+//   boxStyles: {
+//     height: "15vw"
+//   }
+// }
+
+// const thingsToDo = {
+//   id: "thingsTodo",
+//   image: ImageToBox,
+//   title: "THINGS TO DO",
+//   url: "thingsToDo",
+//   boxStyles: {
+//     height: "15vw"
+//   }
+// }
+
+// const news = {
+//   id: "news01",
+//   title: "NEWS",
+//   url: "news",
+//   boxStyles: {
+//     height: "50px"
+//   }
+// }
 
 const LandingPage = () => {
   return (
     <div className='landingPage'>
       <Header />
-      <SubmitPictures data={submitPictures}/>
+      {/* <FullScreenWeightBox data={submitPictures}/> */}
       <Weather />
       <div className="box-container">
         {
@@ -91,10 +133,16 @@ const LandingPage = () => {
           })
         }
       </div>
-      <SubmitPictures data={austinite}/>
-      <SubmitPictures data={thingsToDo}/>
-      <SubmitPictures data={news}/>
-      
+      {
+        landingPageSectionBoxes.map((section) =>{
+          return (
+            <FullScreenWeightBox url={section.url} image={section.image} boxStyles={section.boxStyles ? section.boxStyles : null}>
+              <h1>{section.title}</h1>
+              <p>{section.description ? section.description : null}</p>
+            </FullScreenWeightBox>
+          )
+        })
+      }
     </div>
   );
 }

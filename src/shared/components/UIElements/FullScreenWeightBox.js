@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 
 import "./Styles/FullScreenWeightBox.css";
 
-const SubmitPictures = ({data}) => {
+const FullScreenWeightBox = (props) => {
+  console.log(props, "<---- ")
   return (
-    <Link to={`/${data.url}`} className="submit-pictures-box" style={data.boxStyles ? {height: data.boxStyles.height} : null}>
-        {data.image ? <img src={data.image} alt="Submit Pictures" /> : null}
+    <Link to={`/${props.url}`} className="submit-pictures-box" style={props.boxStyles ? {height: props.boxStyles.height} : null}>
+        {props.image ? <img src={props.image} alt="Submit Pictures" /> : null}
         <div className="content">
-          <h1>{data.title}</h1>
-          <p>{data.description ? data.description : null}</p>
+          {props.children}
         </div>
     </Link>  
   );
 }
 
-export default SubmitPictures;
+export default FullScreenWeightBox;
