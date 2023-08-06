@@ -82,49 +82,10 @@ const landingPageSectionBoxes = [
   }
 ]
 
-
-// const submitPictures = {
-//   id: "submitPictures01",
-//   image: ImageToBox,
-//   title: "SUBMIT YOUR PICTURES",
-//   description: "Share the sights and sounds of your experience!",
-//   url: "submit-pictures"
-// }
-
-// const austinite = {
-//   id: "austinite01",
-//   image: ImageToBox,
-//   title: "VISIT LIKE AN AUSTINITE",
-//   url: "austinite",
-//   boxStyles: {
-//     height: "15vw"
-//   }
-// }
-
-// const thingsToDo = {
-//   id: "thingsTodo",
-//   image: ImageToBox,
-//   title: "THINGS TO DO",
-//   url: "thingsToDo",
-//   boxStyles: {
-//     height: "15vw"
-//   }
-// }
-
-// const news = {
-//   id: "news01",
-//   title: "NEWS",
-//   url: "news",
-//   boxStyles: {
-//     height: "50px"
-//   }
-// }
-
 const LandingPage = () => {
   return (
     <div className='landingPage'>
       <Header />
-      {/* <FullScreenWeightBox data={submitPictures}/> */}
       <Weather />
       <div className="box-container">
         {
@@ -136,7 +97,7 @@ const LandingPage = () => {
       {
         landingPageSectionBoxes.map((section) =>{
           return (
-            <FullScreenWeightBox url={section.url} image={section.image} boxStyles={section.boxStyles ? section.boxStyles : null}>
+            <FullScreenWeightBox key={section.id} url={section.url} image={section.image} boxStyles={section.boxStyles ? section.boxStyles : null}>
               <h1>{section.title}</h1>
               <p>{section.description ? section.description : null}</p>
             </FullScreenWeightBox>
