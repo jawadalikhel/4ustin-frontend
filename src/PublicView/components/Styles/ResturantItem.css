@@ -1,3 +1,37 @@
+/* --------------------------   Moal map styles ------------------------ */
+
+.place-item_info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.place-item_info h2,
+.place-item_info h3,
+.place-item_info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.place-item_actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.map-container {
+  height: 15rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .place-item_imge {
+    height: 20rem;
+  } 
+}
+
+
+
+/* --------------------------   component items styles ------------------------ */
+
 .place-flex-item {
     /* Add flex styles for each restaurant item */
     width: calc(25% - 10px); /* 25% for each item with 10px margin */
