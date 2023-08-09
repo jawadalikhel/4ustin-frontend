@@ -2,12 +2,12 @@
 import React, {useState} from "react";
 
 import Button from "../../shared/components/FormElements/Button";
-import Card from "../../shared/components/UIElements/Card";
 import Modal from "../../shared/components/UIElements/Modal";
+import FilterModal from "../../shared/components/UIElements/FilterModal";
 import Map from "../../shared/components/UIElements/Map";
 
 // Importing CSS styles for the component
-import "./Styles/ResturantItem.css"
+import "./Styles/PlacesItem.css"
 
 //component "PlaceItem" takes props as input
 const PlaceItem = (props) =>{
@@ -98,6 +98,3 @@ const PlaceItem = (props) =>{
 
 // Exporting the component to be used in other parts of the application
 export default PlaceItem;
-
-
-// AIzaSyDFbEN9gh-kB68Qz8hgM_YXU3m0XX84hkk

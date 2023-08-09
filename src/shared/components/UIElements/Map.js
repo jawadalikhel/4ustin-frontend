@@ -3,7 +3,6 @@ import React, {useRef, useEffect} from "react";
 import "./Styles/Map.css";
 
 const Map = (props) =>{
-    console.log(props, "<----- props in map")
     // Creating a reference to the map div using the "useRef" hook
     const mapRef = useRef();
 
@@ -18,9 +17,7 @@ const Map = (props) =>{
         const map = new window.google.maps.Map(mapRef.current, {
             center: center,
             zoom:  zoom
-        });
-        console.log(map, "<----- map")
-    
+        });    
         // We also add a marker to the map using the "google.maps.Marker" constructor
         // The marker is placed at the "center" position and added to the map using the "map" property
         new window.google.maps.Marker({position: center, map: map});

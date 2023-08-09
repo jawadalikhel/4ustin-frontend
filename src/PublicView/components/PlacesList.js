@@ -1,7 +1,8 @@
 import React from "react";
-import "./Styles/PlacesToEatList.css";
 import Card from "../../shared/components/UIElements/Card";
-import ResturantItem from "./ResturantItem";
+import PlacesItem from "./PlacesItem";
+
+import "./Styles/PlacesList.css";
 
 const PlaceToEatList = (props) =>{
     // If the "items" prop is an empty array, display a message and a button to create a new place
@@ -22,7 +23,7 @@ const PlaceToEatList = (props) =>{
                 // Looping through each place item in the "items" array and rendering a PlaceItem component for each one
                 props.resturants.map((resturant) =>{
                     return (
-                        <ResturantItem 
+                        <PlacesItem 
                             name={resturant.name}
                             photo = {resturant.photo}
                             Rating = {resturant.rating}

@@ -3,7 +3,6 @@ import React from 'react';
 
 import Weather from '../components/Weather';
 import Box from "../../shared/components/UIElements/Box";
-import "./styles/LandingPage.css";
 
 import ImageToBox from "../components/images/atx2.jpeg";
 import PlaceToEatImage from "../components/images/eat.jpeg";
@@ -15,6 +14,7 @@ import outdoorImage from "../components/images/outdoor.jpeg";
 import Header from '../components/Header';
 import FullScreenWeightBox from '../../shared/components/UIElements/FullScreenWeightBox';
 
+import "./Styles/LandingPage.css";
 const DUMMY_DATA = [
   {
     id: "01",
