@@ -1,4 +1,27 @@
 .eat-container {
-    /* background-color: red; */
-    margin-top: 5rem;
+    /* background-color:aqua; */
+    margin-top: 100px;
+    /* float: left; */
 }
+
+.eat-heading {
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+
+.eat-heading button {
+    height: 40px;
+    width: 10vw;    
+}
+
+@media (max-width: 768px) {
+    .eat-heading {
+        grid-template-columns: 70% 30%;
+    }
+    .eat-heading h1 {
+        font-size: 5vw;
+    }
+    .eat-heading button  {
+        width: 25vw;
+    }
+  }
