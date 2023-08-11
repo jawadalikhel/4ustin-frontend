@@ -1,27 +1,27 @@
-.eat-container {
+.place-container {
     /* background-color:aqua; */
     margin-top: 100px;
     /* float: left; */
 }
 
-.eat-heading {
+.place-heading {
     display: grid;
     grid-template-columns: 90% 10%;
 }
 
-.eat-heading button {
+.place-heading button {
     height: 40px;
     width: 10vw;    
 }
 
 @media (max-width: 768px) {
-    .eat-heading {
+    .place-heading {
         grid-template-columns: 70% 30%;
     }
-    .eat-heading h1 {
+    .place-heading h1 {
         font-size: 5vw;
     }
-    .eat-heading button  {
+    .place-heading button  {
         width: 25vw;
     }
   }

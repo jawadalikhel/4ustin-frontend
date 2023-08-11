@@ -1,55 +1,48 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import geoLocationHook from "../../shared/hooks/geoLocationHook";
-import { fetchNearbyRestaurants } from "../../shared/apis/apiService";
+import { fetchNearbyPlaces } from "../../shared/apis/apiService";
 import PlacesToEatList from "../components/PlacesList";
 import Button from "../../shared/components/FormElements/Button";
 import FilterModal from "../../shared/components/UIElements/FilterModal";
 
-import "./Styles/PlacesToEat.css";
+import "./Styles/AllPlacesStyle.css";
+
+
+const CATEGORY_NAMES = ["RESTURANTS", "VEGETARIAN", "SMOOTHIES", "STEAKHOUSES", "BBQ", "MEXIAN & TEX-MEX", "FOOD TRAILERS!", "INDIAN", "ASIAN/SUSHI", "BREAKFAST", "BRUNCH", "ITALIAN/PIZZA"];
 
 const PlacesToEat = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
 
-    // Using the React Hook "useState" to create two state variables: "showMap" and "showConfirmModal"
-    const [showMap, setShowMap] = useState(false);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    // Using the React Hook "useState" to create two state variables: "showFilter" and "showConfirmModal"
+    const [showFilter, setShowFilter] = useState(false);
+    const [selectedQueryFor, setSelectedQueryFor] = useState("resturants");
 
-    const queryFor = "resturants";
+
+    // const queryFor = "resturants";
     const cityName = "austin";
 
     // Handler function to open the map modal
-    const openMapHandler = () =>{
-        setShowMap(true);
+    const openFilterHandler = () =>{
+        setShowFilter(true);
     }
 
     // Handler function to close the map modal
-    const closeMapHandler = () =>{
-        setShowMap(false);
+    const closeFilterHandler = () =>{
+        setShowFilter(false);
     }
 
-    // Handler function to show the delete confirmation modal
-    const showDeleteWarningHandler = () =>{
-        setShowConfirmModal(true);
+    const handleCategorySelect = category =>{
+      setSelectedQueryFor(category);
+      closeFilterHandler();
     }
-
-    // Handler function to cancel the delete action and hide the confirmation modal
-    const cancelDeleteHandler = () =>{
-        setShowConfirmModal(false);
-    }
-
-    // Handler function to confirm the delete action, hide the confirmation modal, and...
-    const confirmDeleteHandler = () =>{
-        setShowConfirmModal(false);
-        console.log("DELETING")
-    }
-
 
     useEffect(() => {
         if (location) {
           const findNearbyRestaurants = async () => {
             try {
-              const places = await fetchNearbyRestaurants(location.latitude, location.longitude, queryFor, cityName);
+              const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, cityName);
               setPlacesData(places);
             } catch (error) {
               console.log(error);
@@ -58,33 +51,32 @@ const PlacesToEat = () =>{
     
           findNearbyRestaurants();
         }
-      }, [location]);
+      }, [location, selectedQueryFor, cityName]);
     
     return (
         <React.Fragment>
            <FilterModal 
-                // show={showMap} 
-                onClick={closeMapHandler} 
-                // header={props.address} 
+                show={showFilter} 
+                onClick={closeFilterHandler} 
                 contentClass="place-item__modal-content" 
                 footerClass="place-item__modal-actions"
+                // header = "Category"
                 footer={
                     <React.Fragment>
-                        <Button onClick={closeMapHandler}>CLOSE</Button>
-                        <Button>+ FAVORITE</Button>
+                        <Button onClick={closeFilterHandler}>CLOSE</Button>
                     </React.Fragment>
                 }
-            >
-            </FilterModal>
-          <div className="eat-container">
-                          {/* Modal for displaying the map */}
-           
-              <div className="eat-heading">
+                categoryInfo={CATEGORY_NAMES}
+                onCategorySelect = {handleCategorySelect}
+            />
+
+          <div className="place-container">           
+              <div className="place-heading">
                 <h1>PLACES TO EAT</h1>
-                <Button inverse onClick={openMapHandler}>FILTER</Button>
+                <Button inverse onClick={openFilterHandler}>FILTER</Button>
               </div>
               {
-                  placesData !== null ? <PlacesToEatList resturants={placesData}/> : <p className="eat-loading">Loading...</p>
+                  placesData !== null ? <PlacesToEatList resturants={placesData}/> : <p className="place-loading">Loading...</p>
               }
           </div>
         </React.Fragment>

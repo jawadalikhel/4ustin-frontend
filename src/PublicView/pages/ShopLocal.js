@@ -1,40 +1,73 @@
 import React, { useState, useEffect } from "react";
 import geoLocationHook from "../../shared/hooks/geoLocationHook";
-import { fetchNearbyRestaurants } from "../../shared/apis/apiService";
+import { fetchNearbyPlaces } from "../../shared/apis/apiService";
 import PlacesToEatList from "../components/PlacesList";
 import Button from "../../shared/components/FormElements/Button";
+import FilterModal from "../../shared/components/UIElements/FilterModal";
 
-import "./Styles/PlacesToEat.css";
+import "./Styles/AllPlacesStyle.css";
+const CATEGORY_NAMES = ["SHOP", "COWBOY BOOTS", "BOOTS", "LOCAL SHOPS"];
 
 const ShopLocal = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
-    const queryFor = "shop";
     const cityName = "austin";
+
+    const [showFilter, setShowFilter] = useState(false);
+    const [selectedQueryFor, setSelectedQueryFor] = useState("shop");
+
+    // Handler function to open the map modal
+    const openFilterHandler = () =>{
+        setShowFilter(true);
+    }
+
+    // Handler function to close the map modal
+    const closeFilterHandler = () =>{
+        setShowFilter(false);
+    }
+
+    const handleCategorySelect = category =>{
+      setSelectedQueryFor(category);
+      closeFilterHandler();
+    }
 
     useEffect(() => {
         if (location) {
-          const findNearbyRestaurants = async () => {
+          const findNearbyShops = async () => {
             try {
-              const places = await fetchNearbyRestaurants(location.latitude, location.longitude, queryFor, cityName);
+              const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, cityName);
               setPlacesData(places);
             } catch (error) {
               console.log(error);
             }
           };
     
-          findNearbyRestaurants();
+          findNearbyShops();
         }
-      }, [location]);
+      }, [location, selectedQueryFor, cityName]);
     
     return (
-        <div className="eat-container">
-            <div className="eat-heading">
-              <h1>Shop Local</h1>
-              <Button >FILTER</Button>
+        <div className="place-container">
+            <FilterModal 
+                show={showFilter} 
+                onClick={closeFilterHandler} 
+                contentClass="place-item__modal-content" 
+                footerClass="place-item__modal-actions"
+                footer={
+                    <React.Fragment>
+                        <Button onClick={closeFilterHandler}>CLOSE</Button>
+                    </React.Fragment>
+                }
+                categoryInfo={CATEGORY_NAMES}
+                onCategorySelect = {handleCategorySelect}
+            />
+
+            <div className="place-heading">
+                <h1>SHOP LOCAL</h1>
+                <Button inverse onClick={openFilterHandler}>FILTER</Button>
             </div>
             {
-                placesData !== null ? <PlacesToEatList resturants={placesData}/> : <p className="eat-loading">Loading...</p>
+                placesData !== null ? <PlacesToEatList resturants={placesData}/> : <p className="place-loading">Loading...</p>
             }
         </div>
     )

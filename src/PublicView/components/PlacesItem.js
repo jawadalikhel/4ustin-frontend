@@ -66,7 +66,7 @@ const PlaceItem = (props) =>{
             </Modal>
 
             {/* The main content of the component */}
-            <li className="place-flex-item">
+            <li className="place-flex-item" key={props.id}>
                 <div className="restaurant-card">
                 <div className="place-flex--item_image">
                     <img

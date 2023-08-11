@@ -12,7 +12,7 @@
   .modal__header {
     width: 100%;
     padding: 1rem 0.5rem;
-    background: #2a006e;
+    background: #5CA6FD;
     color: white;
   }
   
@@ -21,7 +21,12 @@
   }
   
   .modal__content {
-    padding: 1rem 0.5rem;
+    text-align: center;
+  }
+
+  .modal__item {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+    color: black;
   }
   
   .modal__footer {

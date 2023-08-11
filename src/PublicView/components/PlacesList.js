@@ -29,7 +29,7 @@ const PlaceToEatList = (props) =>{
                             Rating = {resturant.rating}
                             userRatingTotal ={resturant.userRatingTotal}
                             location = {resturant.location}
-                            key={resturant.id} 
+                            id={resturant.id} 
                             address={resturant.address}
                         />                        
                     )

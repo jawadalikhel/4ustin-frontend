@@ -8,13 +8,13 @@ import FilterModal from "../../shared/components/UIElements/FilterModal";
 import "./Styles/AllPlacesStyle.css";
 const CATEGORY_NAMES = ["NIGHTLIFE","BARS", "BREWWEIES", "DISTILLERIES", "ENTERTAINMENT DISTRICTS", "LIVE MUSIC"];
 
-const Nightlife = () =>{
+const ThingsToDo = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
     const cityName = "austin";
 
     const [showFilter, setShowFilter] = useState(false);
-    const [selectedQueryFor, setSelectedQueryFor] = useState("nightlife");
+    const [selectedQueryFor, setSelectedQueryFor] = useState("things to do");
 
     // Handler function to open the map modal
     const openFilterHandler = () =>{
@@ -48,7 +48,7 @@ const Nightlife = () =>{
     
     return (
         <div className="place-container">
-              <FilterModal 
+              {/* <FilterModal 
                 show={showFilter} 
                 onClick={closeFilterHandler} 
                 contentClass="place-item__modal-content" 
@@ -60,10 +60,10 @@ const Nightlife = () =>{
                 }
                 categoryInfo={CATEGORY_NAMES}
                 onCategorySelect = {handleCategorySelect}
-            />
+            /> */}
             <div className="place-heading">
-              <h1>NIGHTLIFE PLACES</h1>
-              <Button inverse onClick={openFilterHandler}>FILTER</Button>
+              <h1>Things To Do</h1>
+              {/* <Button inverse onClick={openFilterHandler}>FILTER</Button> */}
             </div>
             {
                 placesData !== null ? <PlacesToEatList resturants={placesData}/> : <p className="place-loading">Loading...</p>
@@ -72,4 +72,4 @@ const Nightlife = () =>{
     )
 }
 
-export default Nightlife;
+export default ThingsToDo;

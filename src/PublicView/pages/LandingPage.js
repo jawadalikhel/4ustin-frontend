@@ -48,11 +48,13 @@ const DUMMY_DATA = [
 
 const landingPageSectionBoxes = [
   {
-    id: "submitPictures",
+    id: "thingsTodo",
     image: ImageToBox,
-    title: "SUBMIT YOUR PICTURES",
-    description: "Share the sights and sounds of your experience!",
-    url: "submit-pictures"
+    title: "THINGS TO DO",
+    url: "thingsToDo",
+    boxStyles: {
+      height: "15vw"
+    }
   },
   {
     id: "austinite",
@@ -64,13 +66,11 @@ const landingPageSectionBoxes = [
     }
   },
   {
-    id: "thingsTodo",
+    id: "submitPictures",
     image: ImageToBox,
-    title: "THINGS TO DO",
-    url: "thingsToDo",
-    boxStyles: {
-      height: "15vw"
-    }
+    title: "SUBMIT YOUR PICTURES",
+    description: "Share the sights and sounds of your experience!",
+    url: "submitPictures"
   },
   {
     id: "news",

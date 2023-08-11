@@ -6,21 +6,37 @@ import { CSSTransition } from "react-transition-group";
 import "./Styles/FilterModal.css";
 
 const FilterModalOverLay = props =>{
+    console.log(props, "<---- props in filter")
+    const categoryHandler = (category) =>{
+        props.onCategorySelect(category);
+        // props.filteredQuery(category);
+        // props.setNewQueryFor(category);
+    }
+
     // The "content" variable represents the content of the modal
     // It contains the header, main content, and footer
     const content = (
-        <div className={`modal ${props.className}`} style={props.style}>
+        <div className={`modal`}>
             {/* The "header" section of the modal */}
-            <header className={`modal__header ${props.headerClass}`}>
+            <header className={`modal__header`}>
                 <h2>{props.header}</h2>
             </header>
 
             {/* The "form" element is used to wrap the content and handle form submissions */}
             <form onSubmit={props.onSubmit ? props.onSubmit : (event) => event.preventDefault()}>
                 {/* The "modal__content" class represents the main content of the modal */}
-                <div className={`modal__content ${props.headerClass}`}>
+                <div className={'modal__content'}>
                     {/* The "props.children" represents the main content inside the modal */}
-                    {props.children}
+                    {/* {props.children} */}
+                    {
+                        props.categoryInfo.map((category, index) =>{
+                            return(
+                                <React.Fragment key={index}>
+                                    <h4 className="modal__item" onClick={()=>{categoryHandler(category)}}>{category}</h4>
+                                </React.Fragment>
+                            )
+                        })
+                    }
                 </div>
                 {/* The "modal__footer" class represents the footer section of the modal */}
                 <footer className={`modal__footer ${props.footerClass}`}>
