@@ -6,11 +6,11 @@ import "./Styles/PlacesList.css";
 
 const PlaceToEatList = (props) =>{
     // If the "items" prop is an empty array, display a message and a button to create a new place
-    if(props.resturants.length === 0){
+    if(props.placesData.length === 0){
         return(
             <div className="place-list center">
                 <Card>
-                    <h2>No Resturants Found.</h2>
+                    <h2>No Data Found.</h2>
                 </Card>
             </div>
         )
@@ -21,7 +21,7 @@ const PlaceToEatList = (props) =>{
         <ul className="places-flex-container">
             {
                 // Looping through each place item in the "items" array and rendering a PlaceItem component for each one
-                props.resturants.map((resturant) =>{
+                props.placesData.map((resturant) =>{
                     return (
                         <PlacesItem 
                             name={resturant.name}

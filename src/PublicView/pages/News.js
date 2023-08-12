@@ -11,14 +11,14 @@ const CATEGORY_NAMES = ["Local News","Sports", "Austin 360"];
 const News = () =>{    
     const [news, setNews] = useState(null)
     return (
-        <div className="eat-container">
+        <div className="place-container">
 
-            <div className="eat-heading">
+            <div className="place-heading">
               <h1>Austin News</h1>
               <Button>FILTER</Button>
             </div>
             {
-                news !== null ? {news} : <p className="eat-loading">COMMING SOON...</p>
+                news !== null ? {news} : <p className="place-loading">COMMING SOON...</p>
             }
         </div>
     )

@@ -47,6 +47,13 @@
     background: #292929;
     color: white;
   }
+
+  @media (min-width: 768px) {
+    .mobile-screen {
+      display: none;
+    }
+   }
+
   
   @media (min-width: 768px) {
     .nav-links {

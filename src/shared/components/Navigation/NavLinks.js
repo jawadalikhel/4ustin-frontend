@@ -16,7 +16,7 @@ const NavLinks = () =>{
             </li>
 
             <li>
-                <NavLink to="/shop">SHOPT LOCAL</NavLink>
+                <NavLink to="/shop">SHOP LOCAL</NavLink>
             </li>
 
             <li>
@@ -29,6 +29,19 @@ const NavLinks = () =>{
 
             <li>
                 <NavLink to="/planMyVisit">PLAN MY VISIT</NavLink>
+            </li>
+
+            <li className="mobile-screen">
+                <NavLink to="/planMyVisit">THINGS TO DO</NavLink>
+            </li>
+            <li className="mobile-screen">
+                <NavLink to="/planMyVisit">VISIT LIKE AN AUSTINITE</NavLink>
+            </li>
+            <li className="mobile-screen">
+                <NavLink to="/planMyVisit">SUBMIT YOUR PICTURES</NavLink>
+            </li>
+            <li className="mobile-screen">
+                <NavLink to="/planMyVisit">NEWS</NavLink>
             </li>
         </ul>
     )

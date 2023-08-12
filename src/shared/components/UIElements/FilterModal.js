@@ -6,7 +6,6 @@ import { CSSTransition } from "react-transition-group";
 import "./Styles/FilterModal.css";
 
 const FilterModalOverLay = props =>{
-    console.log(props, "<---- props in filter")
     const categoryHandler = (category) =>{
         props.onCategorySelect(category);
         // props.filteredQuery(category);

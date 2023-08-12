@@ -10,14 +10,14 @@ import "./Styles/AllPlacesStyle.css";
 const SubmitPictures = () =>{    
     const [pictures, setNews] = useState(null)
     return (
-        <div className="eat-container">
+        <div className="place-container">
 
-            <div className="eat-heading">
+            <div className="place-heading">
               <h1>Submit Your Pictures</h1>
               <Button>FILTER</Button>
             </div>
             {
-                pictures !== null ? {pictures} : <p className="eat-loading">COMMING SOON...</p>
+                pictures !== null ? {pictures} : <p className="place-loading">COMMING SOON...</p>
             }
         </div>
     )

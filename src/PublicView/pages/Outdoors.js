@@ -3,38 +3,29 @@ import geoLocationHook from "../../shared/hooks/geoLocationHook";
 import { fetchNearbyPlaces } from "../../shared/apis/apiService";
 import PlacesToEatList from "../components/PlacesList";
 import Button from "../../shared/components/FormElements/Button";
-import FilterModal from "../../shared/components/UIElements/FilterModal";
+import useFilterModalHook from "../../shared/hooks/useFilterModalHook";
+import {CITY_NAME, OUTDOORS_CATEGORY_NAMES} from "../../shared/resources/placeHolderDatas/PlacesQueryData";
+
 
 import "./Styles/AllPlacesStyle.css";
-const CATEGORY_NAMES = ["OUTDOORS", "GOLF", "HIKING AND BIKING", "LAKES AND BOATING", "LEASH FREE DOG PARKS", "PARKS AND SWIMMING", "TENNIS"];
 
 const Outdoors = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
-    const cityName = "austin";
-    const [showFilter, setShowFilter] = useState(false);
     const [selectedQueryFor, setSelectedQueryFor] = useState("outdoors");
-
-    // Handler function to open the map modal
-    const openFilterHandler = () =>{
-        setShowFilter(true);
-    }
-
-    // Handler function to close the map modal
-    const closeFilterHandler = () =>{
-        setShowFilter(false);
-    }
 
     const handleCategorySelect = category =>{
       setSelectedQueryFor(category);
       closeFilterHandler();
     }
+    
+    const {openFilterHandler, closeFilterHandler, FilterModalComponent} = useFilterModalHook(OUTDOORS_CATEGORY_NAMES, handleCategorySelect);
 
     useEffect(() => {
         if (location) {
           const findNearbyOutdoors = async () => {
             try {
-              const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, cityName);
+              const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, CITY_NAME);
               setPlacesData(places);
             } catch (error) {
               console.log(error);
@@ -43,29 +34,17 @@ const Outdoors = () =>{
     
           findNearbyOutdoors();
         }
-      }, [location, selectedQueryFor, cityName]);
+      }, [location, selectedQueryFor, CITY_NAME]);
     
     return (
         <div className="place-container">
-              <FilterModal 
-                show={showFilter} 
-                onClick={closeFilterHandler} 
-                contentClass="place-item__modal-content" 
-                footerClass="place-item__modal-actions"
-                footer={
-                    <React.Fragment>
-                        <Button onClick={closeFilterHandler}>CLOSE</Button>
-                    </React.Fragment>
-                }
-                categoryInfo={CATEGORY_NAMES}
-                onCategorySelect = {handleCategorySelect}
-            />
             <div className="place-heading">
               <h1>Outdoors</h1>
               <Button inverse onClick={openFilterHandler}>FILTER</Button>
+              {FilterModalComponent}
             </div>
             {
-                placesData !== null ? <PlacesToEatList resturants={placesData}/> : <p className="place-loading">Loading...</p>
+                placesData !== null ? <PlacesToEatList placesData={placesData}/> : <p className="place-loading">Loading...</p>
             }
         </div>
     )

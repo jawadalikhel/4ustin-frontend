@@ -1,5 +1,5 @@
 import React from 'react';
-import headerImage from "./images/atx2.jpeg";
+import headerImage from "../../shared/resources/images/atx2.jpeg";
 
 import "./Styles/Header.css";
 

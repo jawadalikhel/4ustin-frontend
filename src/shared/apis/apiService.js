@@ -2,7 +2,6 @@ import axios from 'axios';
 const API_KEY = "AIzaSyDFbEN9gh-kB68Qz8hgM_YXU3m0XX84hkk";
 
 export const fetchNearbyPlaces = async (latitude, longitude, selectedQueryFor, cityName) => {
-  console.log(selectedQueryFor, "<------ shop")
 // try-catch block to handle any potential errors.
   try {
     // The "await" keyword indicates that the code will wait for the response before proceeding.
