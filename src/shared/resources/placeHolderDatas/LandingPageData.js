@@ -49,7 +49,7 @@ export const LANDINGPAGE_4BOXES_SECTION = [
       id: "austinite",
       image: ImageToBox,
       title: "VISIT LIKE AN AUSTINITE",
-      url: "austinite",
+      url: "visitLikeAustinite",
       boxStyles: {
         height: "auto"
       }

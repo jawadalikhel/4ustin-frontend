@@ -14,7 +14,6 @@ const SubmitPictures = () =>{
 
             <div className="place-heading">
               <h1>Submit Your Pictures</h1>
-              <Button>FILTER</Button>
             </div>
             {
                 pictures !== null ? {pictures} : <p className="place-loading">COMMING SOON...</p>

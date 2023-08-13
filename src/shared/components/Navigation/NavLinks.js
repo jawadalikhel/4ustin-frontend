@@ -32,16 +32,16 @@ const NavLinks = () =>{
             </li>
 
             <li className="mobile-screen">
-                <NavLink to="/planMyVisit">THINGS TO DO</NavLink>
+                <NavLink to="/thingsToDo">THINGS TO DO</NavLink>
             </li>
             <li className="mobile-screen">
-                <NavLink to="/planMyVisit">VISIT LIKE AN AUSTINITE</NavLink>
+                <NavLink to="/visitLikeAustinite">VISIT LIKE AN AUSTINITE</NavLink>
             </li>
             <li className="mobile-screen">
-                <NavLink to="/planMyVisit">SUBMIT YOUR PICTURES</NavLink>
+                <NavLink to="/submitPictures">SUBMIT YOUR PICTURES</NavLink>
             </li>
             <li className="mobile-screen">
-                <NavLink to="/planMyVisit">NEWS</NavLink>
+                <NavLink to="/news">NEWS</NavLink>
             </li>
         </ul>
     )
