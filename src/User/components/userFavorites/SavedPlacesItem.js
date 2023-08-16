@@ -1,12 +1,12 @@
 // Importing necessary modules from React and custom components
 import React, {useState} from "react";
 
-import Button from "../../shared/components/FormElements/Button";
-import Modal from "../../shared/components/UIElements/Modal";
-import Map from "../../shared/components/UIElements/Map";
+import Button from "../../../shared/components/FormElements/Button";
+import Modal from "../../../shared/components/UIElements/Modal";
+import Map from "../../../shared/components/UIElements/Map";
 
 // Importing CSS styles for the component
-import "./Styles/SavedPlacesItem.css"
+import "../Styles/SavedPlacesItem.css"
 
 //component "PlaceItem" takes props as input
 const SavedPlacesItem = (props) =>{

@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "../../shared/components/UIElements/Card";
+import Card from "../../../shared/components/UIElements/Card";
 import SavedPlacesItem from "./SavedPlacesItem";
 
-import "./Styles/SavedPlacesList.css";
+import "../Styles/SavedPlacesList.css";
 
 const SavedPlacesList = (props) =>{
     // If the "items" prop is an empty array, display a message and a button to create a new place
