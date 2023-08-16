@@ -11,7 +11,6 @@ const ProfileMainNavigation = () =>{
     // Handler function to open the side drawer
     const openDrawerHandler = () =>{
         setDrawerIsOpen(true);
-        console.log(drawerIsOpen, "<----- openDrawer")
 
         if(drawerIsOpen){
             closeDrawerHandler();

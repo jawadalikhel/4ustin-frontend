@@ -1,0 +1,6 @@
+ul.scroll-container {
+    width: 100%; 
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent content from wrapping to a new line */
+    margin-left: -2em;
+}

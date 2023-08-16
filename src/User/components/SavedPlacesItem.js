@@ -3,15 +3,14 @@ import React, {useState} from "react";
 
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
-import FilterModal from "../../shared/components/UIElements/FilterModal";
 import Map from "../../shared/components/UIElements/Map";
 
 // Importing CSS styles for the component
-import "./Styles/PlacesItem.css"
+import "./Styles/SavedPlacesItem.css"
 
 //component "PlaceItem" takes props as input
-const PlaceItem = (props) =>{
-    console.log(props.photo, "<------ photot")
+const SavedPlacesItem = (props) =>{
+
     // Using the React Hook "useState" to create two state variables: "showMap" and "showConfirmModal"
     const [showMap, setShowMap] = useState(false);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -55,7 +54,7 @@ const PlaceItem = (props) =>{
                 footer={
                     <React.Fragment>
                         <Button onClick={closeMapHandler}>CLOSE</Button>
-                        <Button>+ FAVORITE</Button>
+                        <Button>Remove</Button>
                     </React.Fragment>
                 }
             >
@@ -66,29 +65,29 @@ const PlaceItem = (props) =>{
             </Modal>
 
             {/* The main content of the component */}
-            <li className="place-flex-item" key={props.id}>
-                <div className="restaurant-card">
-                <div className="place-flex--item_image">
-                    <img
-                    src={
-                        props.photo
-                        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${props.photo}&key=AIzaSyDFbEN9gh-kB68Qz8hgM_YXU3m0XX84hkk`
-                        : null
-                    }
-                    alt={props.name}
-                    />
-                </div>
-                <div className="place-item_info">
-                    <h2>{props.name}</h2>
-                    <h3>
-                    {props.Rating} ({props.userRatingTotal})
-                    </h3>
-                </div>
-                <div className="place-item_actions">
-                    <Button inverse onClick={openMapHandler}>
-                    VIEW IN MAP
-                    </Button>
-                </div>
+            <li className="savedPlacesItem-content" key={props.id}>
+                <div className="">
+                    <div>
+                        <img
+                        src={
+                            props.photo
+                            ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${props.photo}&key=AIzaSyDFbEN9gh-kB68Qz8hgM_YXU3m0XX84hkk`
+                            : null
+                        }
+                        alt={props.name}
+                        />
+                    </div>
+                    <div>
+                        <h2>{props.name}</h2>
+                        <h3>
+                        {props.Rating} ({props.userRatingTotal})
+                        </h3>
+                    </div>
+                    <div>
+                        <Button inverse onClick={openMapHandler}>
+                        VIEW IN MAP
+                        </Button>
+                    </div>
                 </div>
             </li>
             
@@ -97,4 +96,4 @@ const PlaceItem = (props) =>{
 }
 
 // Exporting the component to be used in other parts of the application
-export default PlaceItem;
+export default SavedPlacesItem;

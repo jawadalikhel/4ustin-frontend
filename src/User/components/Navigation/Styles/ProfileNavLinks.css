@@ -12,6 +12,7 @@
   
   .profile-nav-links li {
     margin: 1rem;
+    border-right: 1px solid white;
   }
   
   .profile-nav-links a {
