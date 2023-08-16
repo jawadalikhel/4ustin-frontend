@@ -1,0 +1,83 @@
+.profile-nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-nav-links li {
+    margin: 1rem;
+  }
+  
+  .profile-nav-links a {
+    border: 1px solid transparent;
+    color: #292929;
+    text-decoration: none;
+    padding: 0.5rem;
+  }
+  
+  .profile-nav-links a:hover,
+  .profile-nav-links a:active,
+  .profile-nav-links a.active {
+    background: #aee5ff;
+    font-weight: bolder;
+    color: red;
+  }
+  
+  .profile-nav-links button {
+    cursor: pointer;
+    border: 1px solid #292929;
+    color: #292929;
+    background: transparent;
+    padding: 0.5rem;
+    font: inherit;
+  }
+  
+  .profile-nav-links button:focus {
+    outline: none;
+  }
+  
+  .profile-nav-links button:hover,
+  .profile-nav-links button:active {
+    background: #292929;
+    color: white;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-screen {
+      display: none;
+    }
+   }
+
+  
+  @media (min-width: 768px) {
+    .profile-nav-links {
+      flex-direction: row;
+    }
+  
+    .profile-nav-links li {
+      margin: 0 0.5rem;
+    }
+  
+    .profile-nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+  
+    .profile-nav-links button {
+      border: 1px solid white;
+      color: white;
+      background: transparent;
+    }
+    
+    .profile-nav-links button:hover,
+    .profile-nav-links button:active {
+      background: #f8df00;
+      color: #292929;
+    }
+  }
