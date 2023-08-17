@@ -12,19 +12,20 @@
   
   .profile-nav-links li {
     margin: 1rem;
-    border-right: 1px solid white;
+    /* border-right: 1px solid red; */
   }
   
-  .profile-nav-links a {
-    border: 1px solid transparent;
+  .profile-nav-links button {
+    /* border: 1px solid transparent; */
+    border: none;
     color: #292929;
     text-decoration: none;
     padding: 0.5rem;
   }
   
-  .profile-nav-links a:hover,
-  .profile-nav-links a:active,
-  .profile-nav-links a.active {
+  .profile-nav-links button:hover,
+  .profile-nav-links button:active,
+  .profile-nav-links button.active {
     background: #aee5ff;
     font-weight: bolder;
     color: red;
@@ -40,6 +41,7 @@
   }
   
   .profile-nav-links button:focus {
+    border: none;
     outline: none;
   }
   
@@ -65,7 +67,7 @@
       margin: 0 0.5rem;
     }
   
-    .profile-nav-links a {
+    .profile-nav-links button {
       color: white;
       text-decoration: none;
     }

@@ -67,7 +67,7 @@ const DUMMUY_DATA = [
         address: "1100 E Oltorf St"
     }
 ]
-const savedPlaces = () =>{
+const SavedPlaces = () =>{
     return(
         <div>
             <h1>My Favorite Places</h1>
@@ -76,4 +76,4 @@ const savedPlaces = () =>{
     )
 }
 
-export default savedPlaces;
+export default SavedPlaces;

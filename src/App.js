@@ -14,6 +14,7 @@ import SubmitPictures from "./PublicView/pages/SubmitPictures";
 
 // user's routes
 import PlanMyVisit from "./User/pages/PlanMyVisit";
+
 export default function App() {
   return (
     <div>
@@ -31,6 +32,7 @@ export default function App() {
 
         {/* User's routes */}
         <Route path='/planMyVisit' element={<PlanMyVisit/>} />
+
       </Routes>
     </div>
   );

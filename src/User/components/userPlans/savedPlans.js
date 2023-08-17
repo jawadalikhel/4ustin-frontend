@@ -41,7 +41,7 @@ const DUMMUY_DATA = [
 
     },
 ]
-const savedPlans = () =>{
+const SavedPlans = () =>{
     return(
         <div>
             <h1>My Plans</h1>
@@ -50,4 +50,4 @@ const savedPlans = () =>{
     )
 }
 
-export default savedPlans;
+export default SavedPlans;

@@ -1,39 +1,35 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
-import "./Styles/ProfileNavLinks.css";
-
-const ProfileNavLinks = () =>{
+import "./Styles/ProfileNavLinks.css"
+const ProfileNavLinks = ({handleOptionSelect}) =>{
     return(
         <ul className="profile-nav-links">
-            {/* The "NavLink" component is a special version of the "Link" component from "react-router-dom" */}
-            {/* It automatically applies the "active" class to the link when the current URL matches the "to" prop */}
             <li>
-                <NavLink to="/">MY FAVORITES</NavLink>
+                <button onClick={() => handleOptionSelect("myFavorites")}>MY FAVORITES</button>
             </li>
 
             <li>
-                <NavLink to="/">CUSTOMIZED PLANS</NavLink>
+                <button onClick={() => handleOptionSelect("customizedPlans")}>CUSTOMIZED PLANS</button>
             </li>
 
             <li>
-                <NavLink to="/">TRIP PLANNER</NavLink>
+                <button onClick={() => handleOptionSelect("tripPlanner")}>TRIP PLANNER</button>
             </li>
 
             <li>
-                <NavLink to="/">MAP</NavLink>
+                <button onClick={() => handleOptionSelect("map")}>MAP</button>
             </li>
 
             <li>
-                <NavLink to="/">WEATHER</NavLink>
+                <button onClick={() => handleOptionSelect("weather")}>WEATHER</button>
             </li>
 
             <li>
-                <NavLink to="/">COLLABORATE</NavLink>
+                <button onClick={() => handleOptionSelect("collaborate")}>COLLABORATE</button>
             </li>
 
             <li>
-                <NavLink to="/">BUDGET/EXPENSES</NavLink>
+                <button onClick={() => handleOptionSelect("buget-expenses")}>BUDGET/EXPENSES</button>
             </li>
         </ul>
     )

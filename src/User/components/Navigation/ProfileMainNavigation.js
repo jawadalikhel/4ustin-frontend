@@ -4,10 +4,14 @@ import ProfileNavDrawer from "./ProfileNavDrawer";
 
 import "./Styles/ProfileMainNavigation.css"
 
-const ProfileMainNavigation = () =>{
+const ProfileMainNavigation = ({handleOptionSelect}) =>{
     // Using the "useState" hook to manage the state of the side drawer (open/closed)
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
+    const handleOption = (option) =>{
+        console.log(option, "<------ ProfileMainNavigation")
+        handleOptionSelect(option);
+    }
     // Handler function to open the side drawer
     const openDrawerHandler = () =>{
         setDrawerIsOpen(true);
@@ -28,7 +32,7 @@ const ProfileMainNavigation = () =>{
             {
                 drawerIsOpen === true ?  <ProfileNavDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
                 <nav className="profile-main-navigation_drawer-nav">
-                    <ProfileNavLinks />
+                    <ProfileNavLinks handleOptionSelect={handleOption}/>
                 </nav>
             </ProfileNavDrawer> : null
             }
@@ -42,7 +46,7 @@ const ProfileMainNavigation = () =>{
             </button>
 
             <nav className="profile-main-navigation_header-nav">
-                <ProfileNavLinks />
+                <ProfileNavLinks handleOptionSelect={handleOption}/>
             </nav>
             
         </div>
