@@ -13,10 +13,7 @@ import "./Styles/Auth.css";
 const Auth = () =>{
     const [formState, inputHandler] = useForm({
         // these are the initial state for Auth
-        username: {
-            value: '',
-            isValid: false
-        },
+
         email: {
             value: '',
             isValid: false
@@ -27,26 +24,13 @@ const Auth = () =>{
         }
     }, false)// initial the form is invalid(false)
 
-    const authSubmitHandler = event =>{
-        event.preventDefault();
-        console.log(formState.inputs, "<----- formState")
-    }
+
     return (
         <Card className="authentication">
             <h2>Login Required</h2>
             <hr/>
-            <form onSubmit={authSubmitHandler}>
-                <Input 
-                    element="input" 
-                    id="username" 
-                    type="username" 
-                    label="Username" 
-                    validators={[VALIDATOR_REQUIRE()]}
-                    errorText="Username required"
-                    onInput={inputHandler}
-                    initialValue={formState.inputs.username.value}
-                    initialValid={formState.inputs.username.isValid}
-                />
+            <form >
+
 
                 <Input 
                     element="input" 
