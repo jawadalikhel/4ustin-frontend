@@ -11,9 +11,14 @@ import Button from "../../shared/components/FormElements/Button";
 import "./Styles/Auth.css";
 
 const Auth = () =>{
-    const [formState, inputHandler] = useForm({
-        // these are the initial state for Auth
+    const [isLoginMode, setIsLoginMode] = useState(true);
 
+    const [formState, inputHandler, setFormData] = useForm({
+        // these are the initial state for Auth
+        username: {
+            value: '',
+            isValid: false
+        },
         email: {
             value: '',
             isValid: false
@@ -24,13 +29,52 @@ const Auth = () =>{
         }
     }, false)// initial the form is invalid(false)
 
+    const switchModeHandler = () =>{
+        // if the user is not in the login Mode
+        if(!isLoginMode){
+            setFormData({
+                ...formState.inputs,
+                username: undefined
+            }, 
+            formState.inputs.email.isValid && formState.inputs.password.isValid);
+        }else{
+            setFormData({
+                ...formState.inputs, // this is where we already have the email and password in state
+                // add the new value of username in the state
+                username: {
+                    value: '',
+                    isValid: false
+                }
+            }, false); // validity of the form is false
+        }
+        setIsLoginMode((prevMode) => !prevMode);
+    }
+
+    const authSubmitHandler = event =>{
+        event.preventDefault();
+        console.log(formState.inputs, "<----- formState")
+    }
 
     return (
         <Card className="authentication">
             <h2>Login Required</h2>
             <hr/>
-            <form >
-
+            <form onSubmit={authSubmitHandler}>
+                {
+                    !isLoginMode ? 
+                        <Input 
+                            element="input" 
+                            id="username" 
+                            type="text" 
+                            label="Username" 
+                            validators={[VALIDATOR_REQUIRE()]}
+                            errorText="Username required"
+                            onInput={inputHandler}
+                            initialValue={formState.inputs.username.value}
+                            initialValid={formState.inputs.username.isValid}
+                        /> : null
+                }
+                
 
                 <Input 
                     element="input" 
@@ -56,8 +100,9 @@ const Auth = () =>{
                     initialValid={formState.inputs.password.isValid}
                 />
 
-                <Button type="submit" disabled={!formState.isValid}>LOGIN</Button>
+                <Button type="submit" disabled={!formState.isValid}>{isLoginMode ? "LOGIN" : "SIGNUP"}</Button>
             </form>
+            <Button inverse onClick={switchModeHandler}>SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}</Button>
         </Card>
     )
 }

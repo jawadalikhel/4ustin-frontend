@@ -9,6 +9,7 @@ const formReducer = (state, action) =>{
             let formIsValid = true;
             // Loop through all form inputs to check their validity
             for(const inputId in state.inputs){
+                // !state.inputs[inputId] is undefine
                 if(!state.inputs[inputId]){
                     continue;
                 }
