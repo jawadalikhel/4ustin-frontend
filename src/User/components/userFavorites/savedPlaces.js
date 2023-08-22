@@ -1,7 +1,7 @@
 import React from "react";
 import SavedPlacesList from "./SavedPlacesList";
 
-const DUMMUY_DATA = [
+const INITIAL_DATA = [
     {
         name: "Salty Sow",
         photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
@@ -71,7 +71,7 @@ const SavedPlaces = () =>{
     return(
         <div>
             <h1>My Favorite Places</h1>
-            <SavedPlacesList placesData={DUMMUY_DATA} />
+            <SavedPlacesList placesData={INITIAL_DATA} />
         </div>
     )
 }

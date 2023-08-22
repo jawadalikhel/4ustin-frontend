@@ -11,6 +11,7 @@ import ThingsToDo from "./PublicView/pages/ThingsToDo";
 import News from "./PublicView/pages/News";
 import Austinite from "./PublicView/pages/Austinite";
 import SubmitPictures from "./PublicView/pages/SubmitPictures";
+import Auth from "./User/pages/Auth";
 
 // user's routes
 import PlanMyVisit from "./User/pages/PlanMyVisit";
@@ -32,6 +33,8 @@ export default function App() {
 
         {/* User's routes */}
         <Route path='/planMyVisit' element={<PlanMyVisit/>} />
+
+        <Route path="/auth" element={<Auth />} />
 
       </Routes>
     </div>
