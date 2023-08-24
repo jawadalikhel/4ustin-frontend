@@ -1,9 +1,7 @@
 // LandingPage.js
 import React from 'react';
-
 import Weather from '../components/Weather';
 import Box from "../../shared/components/UIElements/Box";
-
 import Header from '../components/Header';
 import FullScreenWeightBox from '../../shared/components/UIElements/FullScreenWeightBox';
 

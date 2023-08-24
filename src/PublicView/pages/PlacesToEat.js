@@ -8,8 +8,6 @@ import {CITY_NAME, PLACESTOEAT_CATEGORY_NAMES} from "../../shared/resources/plac
 
 import "./Styles/AllPlacesStyle.css";
 
-
-
 const PlacesToEat = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
@@ -37,7 +35,7 @@ const PlacesToEat = () =>{
     
           findNearbyRestaurants();
         }
-      }, [location, selectedQueryFor, CITY_NAME]);
+      }, [location, selectedQueryFor]);
     
     return (
         <React.Fragment>

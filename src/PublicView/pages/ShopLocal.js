@@ -12,7 +12,7 @@ const ShopLocal = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
 
-    const [selectedQueryFor, setSelectedQueryFor] = useState("shop");
+    const [selectedQueryFor, setSelectedQueryFor] = useState("local shop");
 
     const handleCategorySelect = category =>{
       setSelectedQueryFor(category);
@@ -23,7 +23,7 @@ const ShopLocal = () =>{
 
     useEffect(() => {
         if (location) {
-          const findNearbyShops = async () => {
+          const findNearbyLocalShops = async () => {
             try {
               const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, CITY_NAME);
               setPlacesData(places);
@@ -32,9 +32,9 @@ const ShopLocal = () =>{
             }
           };
     
-          findNearbyShops();
+          findNearbyLocalShops();
         }
-      }, [location, selectedQueryFor, CITY_NAME]);
+      }, [location, selectedQueryFor]);
     
     return (
         <div className="place-container">

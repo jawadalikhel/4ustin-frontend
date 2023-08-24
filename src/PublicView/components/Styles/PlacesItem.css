@@ -11,7 +11,7 @@
     }
   }
   
-  .restaurant-card {
+  .place-card {
     /* Add styles for the card container */
     display: flex;
     flex-direction: column;

@@ -13,7 +13,7 @@ const ThingsToDo = () =>{
 
     useEffect(() => {
         if (location) {
-          const findNearbyNightlife = async () => {
+          const findNearbyThingsToDo = async () => {
             try {
               const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, CITY_NAME);
               setPlacesData(places);
@@ -22,9 +22,9 @@ const ThingsToDo = () =>{
             }
           };
     
-          findNearbyNightlife();
+          findNearbyThingsToDo();
         }
-      }, [location, selectedQueryFor, CITY_NAME]);
+      }, [location, selectedQueryFor]);
     
     return (
         <div className="place-container">

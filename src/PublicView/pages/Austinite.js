@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import geoLocationHook from "../../shared/hooks/geoLocationHook";
 import { fetchNearbyPlaces } from "../../shared/apis/apiService";
 import PlacesList from "../components/PlacesList";
-import Button from "../../shared/components/FormElements/Button";
 import useFilterModalHook from "../../shared/hooks/useFilterModalHook";
 import {CITY_NAME, PLACESTOEAT_CATEGORY_NAMES, AUSTINITE_INFO} from "../../shared/resources/placeHolderDatas/PlacesQueryData";
 
@@ -22,11 +21,11 @@ const Austinite = () =>{
       closeFilterHandler();
     }
     
-    const {openFilterHandler, closeFilterHandler, FilterModalComponent} = useFilterModalHook(PLACESTOEAT_CATEGORY_NAMES, handleCategorySelect);
+    const {closeFilterHandler} = useFilterModalHook(PLACESTOEAT_CATEGORY_NAMES, handleCategorySelect);
 
     useEffect(() => {
         if (location) {
-          const findNearbyRestaurants = async () => {
+          const findNearbyPlaces = async () => {
             try {
               const places = await fetchNearbyPlaces(location.latitude, location.longitude, selectedQueryFor, CITY_NAME);
               setPlacesData(places);
@@ -35,9 +34,9 @@ const Austinite = () =>{
             }
           };
     
-          findNearbyRestaurants();
+          findNearbyPlaces();
         }
-      }, [location, selectedQueryFor, CITY_NAME]);
+      }, [location, selectedQueryFor]);
     
     return (
         <React.Fragment>
@@ -46,7 +45,6 @@ const Austinite = () =>{
                 <h1>Visit Like An Austinite</h1>
                 {
                     AUSTINITE_INFO.map((austinite) =>{
-                        // console.log(austinite.content)
                         return(
                             <div key={austinite.title}>
                                 <h4>{austinite.title}</h4>

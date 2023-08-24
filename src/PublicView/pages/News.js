@@ -15,7 +15,7 @@ const News = () =>{
 
             <div className="place-heading">
               <h1>Austin News</h1>
-              <Button>FILTER</Button>
+              {/* <Button>FILTER</Button> */}
             </div>
             {
                 news !== null ? {news} : <p className="place-loading">COMMING SOON...</p>

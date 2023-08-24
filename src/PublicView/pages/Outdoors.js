@@ -34,7 +34,7 @@ const Outdoors = () =>{
     
           findNearbyOutdoors();
         }
-      }, [location, selectedQueryFor, CITY_NAME]);
+      }, [location, selectedQueryFor]);
     
     return (
         <div className="place-container">

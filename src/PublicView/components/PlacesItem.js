@@ -2,7 +2,6 @@
 import React, {useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
 import Map from "../../shared/components/UIElements/Map";
@@ -10,7 +9,7 @@ import {AuthContext} from "../../shared/context/auth-context";
 
 // Importing CSS styles for the component
 import "./Styles/PlacesItem.css"
-import { async } from "q";
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_PLACES;
 
 //component "PlaceItem" takes props as input
 const PlaceItem = (props) =>{
@@ -63,12 +62,12 @@ const PlaceItem = (props) =>{
 
             {/* The main content of the component */}
             <li className="place-flex-item" key={props.id}>
-                <div className="restaurant-card">
+                <div className="place-card">
                 <div className="place-flex--item_image">
                     <img
                     src={
                         props.photo
-                        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${props.photo}&key=AIzaSyDFbEN9gh-kB68Qz8hgM_YXU3m0XX84hkk`
+                        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${props.photo}&key=${GOOGLE_API}`
                         : null
                     }
                     alt={props.name}

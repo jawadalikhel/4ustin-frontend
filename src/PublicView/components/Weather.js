@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import geoLocationHook from "../../shared/hooks/geoLocationHook";
 import './Styles/Weather.css'; // Create this CSS file to style the header
 
-const WEATHER_API_KEY = "6d755b05fabec6acb3cba65df652de9b";
+// const WEATHER_API_KEY = "6d755b05fabec6acb3cba65df652de9b";
+const WEATHER_API = process.env.REACT_APP_WEATHER_API
+
 const Header = () => {
   const [weather, setWeather] = useState({});
   const {location, error} = geoLocationHook();
@@ -11,10 +13,10 @@ const Header = () => {
     if(location){
       const lat = location.latitude;
       const long = location.longitude; 
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${WEATHER_API_KEY}`)
+
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${WEATHER_API}`)
         .then(response => response.json())
         .then(data => {
-          console.log(data, "<---- weather")
           let cTemp = data.main.temp;
           let currentTempInF = (cTemp * (9 / 5) )+ 32;
   
