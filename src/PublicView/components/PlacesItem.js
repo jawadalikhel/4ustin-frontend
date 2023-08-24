@@ -1,20 +1,23 @@
 // Importing necessary modules from React and custom components
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
-import FilterModal from "../../shared/components/UIElements/FilterModal";
 import Map from "../../shared/components/UIElements/Map";
+import {AuthContext} from "../../shared/context/auth-context";
 
 // Importing CSS styles for the component
 import "./Styles/PlacesItem.css"
+import { async } from "q";
 
 //component "PlaceItem" takes props as input
 const PlaceItem = (props) =>{
-    console.log(props.photo, "<------ photot")
+    const auth = useContext(AuthContext);
+    const navigate = useNavigate();
     // Using the React Hook "useState" to create two state variables: "showMap" and "showConfirmModal"
     const [showMap, setShowMap] = useState(false);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
     // Handler function to open the map modal
     const openMapHandler = () =>{
@@ -26,20 +29,13 @@ const PlaceItem = (props) =>{
         setShowMap(false);
     }
 
-    // Handler function to show the delete confirmation modal
-    const showDeleteWarningHandler = () =>{
-        setShowConfirmModal(true);
-    }
-
-    // Handler function to cancel the delete action and hide the confirmation modal
-    const cancelDeleteHandler = () =>{
-        setShowConfirmModal(false);
-    }
-
-    // Handler function to confirm the delete action, hide the confirmation modal, and...
-    const confirmDeleteHandler = () =>{
-        setShowConfirmModal(false);
-        console.log("DELETING")
+    const addToFavoriteHandler = () =>{
+        if(!auth.isLoggedIn){
+            if(window.confirm("You Need to login to Add to Favorites")){
+                navigate("/auth");
+            }            
+        }
+        alert("Place Added To Your Favorites")
     }
 
     // The component's JSX code starts here
@@ -55,7 +51,7 @@ const PlaceItem = (props) =>{
                 footer={
                     <React.Fragment>
                         <Button onClick={closeMapHandler}>CLOSE</Button>
-                        <Button>+ FAVORITE</Button>
+                        <Button onClick={addToFavoriteHandler}>+ FAVORITE</Button>
                     </React.Fragment>
                 }
             >
@@ -81,7 +77,7 @@ const PlaceItem = (props) =>{
                 <div className="place-item_info">
                     <h2>{props.name}</h2>
                     <h3>
-                    {props.Rating} ({props.userRatingTotal})
+                    {props.Rating}&#9734; ({props.userRatingTotal})
                     </h3>
                 </div>
                 <div className="place-item_actions">

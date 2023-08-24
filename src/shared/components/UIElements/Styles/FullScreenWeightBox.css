@@ -20,12 +20,12 @@
  }
   
  .content h1 {
-    font-size: 3vw;
+    /* font-size: 3vw; */
     margin: 0;
 }
 
 .content p {
-    font-size: 1vw;
+    /* font-size: 1vw; */
 }
 
 /* Media query for mobile devices */

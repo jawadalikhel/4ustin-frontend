@@ -1,24 +1,22 @@
 import React, {useState, useContext} from "react";
-import {AuthContext} from "../../shared/context/auth-contect";
 import {useForm} from "../../shared/hooks/form-hook";
 import {VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE} from "../../shared/util/validators";
 
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
-
+import { AuthContext } from "../../shared/context/auth-context";
 
 import "./Styles/Auth.css";
 
 const Auth = () =>{
+    // get access to the auth object by using the useContext
+    const auth = useContext(AuthContext);
+    // State to manage whether the user is in login mode or signup mode
     const [isLoginMode, setIsLoginMode] = useState(true);
 
+    // Custom hook 'useForm' to manage the form state and form input validation
     const [formState, inputHandler, setFormData] = useForm({
-        // these are the initial state for Auth
-        username: {
-            value: '',
-            isValid: false
-        },
         email: {
             value: '',
             isValid: false
@@ -27,84 +25,84 @@ const Auth = () =>{
             value: '',
             isValid: false
         }
-    }, false)// initial the form is invalid(false)
-
+    },false);
+    
+    // Function to handle switching between login and signup modes
     const switchModeHandler = () =>{
-        // if the user is not in the login Mode
         if(!isLoginMode){
             setFormData({
                 ...formState.inputs,
-                username: undefined
-            }, 
-            formState.inputs.email.isValid && formState.inputs.password.isValid);
-        }else{
+                name: undefined
+            }, formState.inputs.email.isValid && formState.inputs.password.isValid);
+        }else {
             setFormData({
-                ...formState.inputs, // this is where we already have the email and password in state
-                // add the new value of username in the state
-                username: {
+                ...formState.inputs,
+                name: {
                     value: '',
                     isValid: false
                 }
-            }, false); // validity of the form is false
+            },false)
         }
-        setIsLoginMode((prevMode) => !prevMode);
+        setIsLoginMode(prevMode => !prevMode);
     }
 
-    const authSubmitHandler = event =>{
+    // Function to handle form submission
+    const authSubmitHandler = (event) =>{
         event.preventDefault();
-        console.log(formState.inputs, "<----- formState")
+        console.log(formState.inputs, "<--- form submit") // send this to backend
+        auth.login();
     }
 
-    return (
+    
+    return(
         <Card className="authentication">
             <h2>Login Required</h2>
-            <hr/>
-            <form onSubmit={authSubmitHandler}>
+            <hr />
+            <form onSubmit={authSubmitHandler} className="">
+                {/* Render input fields based on the current mode (login or signup) */}
                 {
                     !isLoginMode ? 
                         <Input 
                             element="input" 
-                            id="username" 
+                            id="name" 
                             type="text" 
-                            label="Username" 
-                            validators={[VALIDATOR_REQUIRE()]}
-                            errorText="Username required"
+                            label="Your Username" 
+                            validators={[VALIDATOR_REQUIRE()]} 
+                            errorText="Username Required"
                             onInput={inputHandler}
-                            initialValue={formState.inputs.username.value}
-                            initialValid={formState.inputs.username.isValid}
                         /> : null
                 }
-                
-
                 <Input 
                     element="input" 
                     id="email" 
-                    type="email" 
+                    type="email"
                     label="E-Mail" 
-                    validators={[VALIDATOR_EMAIL()]}
-                    errorText="Please enter a valid email"
-                    onInput={inputHandler}
-                    initialValue={formState.inputs.email.value}
-                    initialValid={formState.inputs.email.isValid}
+                    validators={[VALIDATOR_EMAIL()]} 
+                    errorText="Please enter a valid Email" 
+                    onInput={inputHandler} 
                 />
 
                 <Input 
                     element="input" 
                     id="password" 
-                    type="password" 
+                    type="password"
                     label="Password" 
-                    validators={[VALIDATOR_MINLENGTH(5)]}
-                    errorText="Please enter a valid password, at least 5 characters."
-                    onInput={inputHandler}
-                    initialValue={formState.inputs.password.value}
-                    initialValid={formState.inputs.password.isValid}
+                    validators={[VALIDATOR_MINLENGTH(5)]} 
+                    errorText="Please enter a valid Password" 
+                    onInput={inputHandler} 
                 />
 
-                <Button type="submit" disabled={!formState.isValid}>{isLoginMode ? "LOGIN" : "SIGNUP"}</Button>
+                {/* Disable the button if the form is not valid */}
+                <Button type="submit" disabled={!formState.isValid}>
+                    {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+                </Button>
             </form>
-            <Button inverse onClick={switchModeHandler}>SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}</Button>
+            {/* Button to switch between login and signup modes */}
+            <Button inverse  onClick={switchModeHandler}>
+                SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+            </Button>
         </Card>
     )
 }
 
-export default Auth; 
+export default Auth;

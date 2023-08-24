@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, {useState, useCallback} from "react";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import LandingPage from "./PublicView/pages/LandingPage";
@@ -13,30 +13,59 @@ import Austinite from "./PublicView/pages/Austinite";
 import SubmitPictures from "./PublicView/pages/SubmitPictures";
 import Auth from "./User/pages/Auth";
 
+import { AuthContext } from "./shared/context/auth-context";
 // user's routes
 import PlanMyVisit from "./User/pages/PlanMyVisit";
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+    navigate("/planMyVisit")
+  }, [navigate])
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, [])
+
   return (
-    <div>
-      <MainNavigation/>
-      <Routes>
-        <Route path='/' element={<LandingPage/>} />
-        <Route path='/eat' element={<PlacesToEat/>} />
-        <Route path='/shop' element={<ShopLocal/>} />
-        <Route path='/nightlife' element={<Nightlife/>} />
-        <Route path='/outdoors' element={<Outdoors/>} />
-        <Route path='/thingsToDo' element={<ThingsToDo/>} />
-        <Route path='/visitLikeAustinite' element={<Austinite/>} />
-        <Route path='/submitPictures' element={<SubmitPictures/>} />
-        <Route path='/news' element={<News/>} />
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout:logout}}>
+      <div>
+        <MainNavigation/>
+        {
+          isLoggedIn ?
+          <Routes>
+            <Route path='/' element={<LandingPage/>} />
+            <Route path='/eat' element={<PlacesToEat/>} />
+            <Route path='/shop' element={<ShopLocal/>} />
+            <Route path='/nightlife' element={<Nightlife/>} />
+            <Route path='/outdoors' element={<Outdoors/>} />
+            <Route path='/thingsToDo' element={<ThingsToDo/>} />
+            <Route path='/visitLikeAustinite' element={<Austinite/>} />
+            <Route path='/submitPictures' element={<SubmitPictures/>} />
+            <Route path='/news' element={<News/>} />
+            <Route path='/planMyVisit' element={<PlanMyVisit/>} />
+          </Routes>
 
-        {/* User's routes */}
-        <Route path='/planMyVisit' element={<PlanMyVisit/>} />
-
-        <Route path="/auth" element={<Auth />} />
-
-      </Routes>
-    </div>
+        :
+        <Routes>
+          <Route path='/' element={<LandingPage/>} />
+          <Route path='/eat' element={<PlacesToEat/>} />
+          <Route path='/shop' element={<ShopLocal/>} />
+          <Route path='/nightlife' element={<Nightlife/>} />
+          <Route path='/outdoors' element={<Outdoors/>} />
+          <Route path='/thingsToDo' element={<ThingsToDo/>} />
+          <Route path='/visitLikeAustinite' element={<Austinite/>} />
+          <Route path='/submitPictures' element={<SubmitPictures/>} />
+          <Route path='/news' element={<News/>} />
+          <Route path="/auth" element={<Auth />} />
+          {/* Redirect the user to auth route if not loggedin */}
+          <Route path="/planMyVisit" element={<Navigate replace to="/auth" />}/>
+        </Routes>
+        }
+      </div>
+    </AuthContext.Provider>
   );
 };

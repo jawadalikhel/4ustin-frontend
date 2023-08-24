@@ -20,7 +20,7 @@ const SideDrawer = props =>{
             {/* The "onClick" prop allows the side drawer to be closed when clicked */}
             <aside className="side-drawer" onClick={props.onClick}>
                 {/* <h1>GoATX</h1> */}
-                <h1 className="mobile-menu-navigation_title">GoAustin</h1>
+                {/* <h1 className="mobile-menu-navigation_title">GoAustin</h1> */}
                 {props.children}
             </aside>
 

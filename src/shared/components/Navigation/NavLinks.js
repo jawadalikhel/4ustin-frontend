@@ -1,8 +1,11 @@
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 
+import { AuthContext } from "../../context/auth-context";
 import "./Styles/NavLinks.css";
 
 const NavLinks = () =>{
+    const auth = useContext(AuthContext);
     return(
         <ul className="nav-links">
             {/* The "NavLink" component is a special version of the "Link" component from "react-router-dom" */}
@@ -27,9 +30,16 @@ const NavLinks = () =>{
                 <NavLink to="/outdoors">OUTDOORS</NavLink>
             </li>
 
-            <li>
-                <NavLink to="/planMyVisit">PLAN MY VISIT</NavLink>
-            </li>
+            {
+                auth.isLoggedIn ?  
+                <li>
+                    <NavLink to="/planMyVisit">PLAN MY VISIT</NavLink>
+                </li> :
+                 <li>
+                    <NavLink to="/auth">PLAN MY VISIT</NavLink>
+                </li>
+            }
+           
 
             <li className="mobile-screen">
                 <NavLink to="/thingsToDo">THINGS TO DO</NavLink>

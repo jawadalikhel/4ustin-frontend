@@ -9,7 +9,6 @@ const ProfileMainNavigation = ({handleOptionSelect}) =>{
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
     const handleOption = (option) =>{
-        console.log(option, "<------ ProfileMainNavigation")
         handleOptionSelect(option);
     }
     // Handler function to open the side drawer
