@@ -32,6 +32,7 @@ const SavedPlacesList = (props) =>{
                             location = {resturant.location}
                             id={resturant.id} 
                             address={resturant.address}
+                            onDelete={props.onDeletePlace}
                         />                        
                     )
                 })

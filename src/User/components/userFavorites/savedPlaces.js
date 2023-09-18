@@ -27,6 +27,10 @@ const SavedPlaces = () =>{
         fetchUserFavoritePlaces();
       }, [sendRequest, userId]);
 
+      const placeDeletedHandler = (deletedPlaceId) =>{
+        setLoadedPlaces(prevPlaces => prevPlaces.filter(place => place.id !== deletedPlaceId))
+      }
+
     return(
         <React.Fragment>
             <ErrorModal error={error} onClear={clearError} />
@@ -39,7 +43,7 @@ const SavedPlaces = () =>{
             {!isLoading && loadedPlaces ? (
                 <div>
                     <h1>My Favorite Places</h1>
-                    <SavedPlacesList placesData={loadedPlaces} />
+                    <SavedPlacesList placesData={loadedPlaces} onDeletePlace={placeDeletedHandler} />
                 </div>
             ) : null}
         </React.Fragment>

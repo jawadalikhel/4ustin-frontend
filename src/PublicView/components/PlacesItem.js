@@ -11,7 +11,6 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 
 // Importing CSS styles for the component
 import "./Styles/PlacesItem.css"
-const GOOGLE_API = process.env.REACT_APP_GOOGLE_PLACES;
 
 //component "PlaceItem" takes props as input
 const PlaceItem = (props) =>{
@@ -41,7 +40,6 @@ const PlaceItem = (props) =>{
         }else{
             try {
                 alert("Place Added To Your Favorites")
-                console.log(auth.userId, "<----- auth.userId")
                 await sendRequest(
                     'http://localhost:5000/api/favorites/user/addToFavorites', 
                     'POST',
@@ -61,7 +59,7 @@ const PlaceItem = (props) =>{
 
                 // redirect the user to a different page
             } catch (error) {
-                
+                console.log(error, "<---- can add to favorite place")
             }
         }
         
@@ -97,7 +95,7 @@ const PlaceItem = (props) =>{
                     <img
                     src={
                         props.photo
-                        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${props.photo}&key=${GOOGLE_API}`
+                        ? props.photo
                         : null
                     }
                     alt={props.name}
