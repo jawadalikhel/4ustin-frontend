@@ -13,7 +13,6 @@ const SavedPlacesItem = (props) =>{
 
     // Using the React Hook "useState" to create two state variables: "showMap" and "showConfirmModal"
     const [showMap, setShowMap] = useState(false);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
     // Handler function to open the map modal
     const openMapHandler = () =>{
@@ -23,22 +22,6 @@ const SavedPlacesItem = (props) =>{
     // Handler function to close the map modal
     const closeMapHandler = () =>{
         setShowMap(false);
-    }
-
-    // Handler function to show the delete confirmation modal
-    const showDeleteWarningHandler = () =>{
-        setShowConfirmModal(true);
-    }
-
-    // Handler function to cancel the delete action and hide the confirmation modal
-    const cancelDeleteHandler = () =>{
-        setShowConfirmModal(false);
-    }
-
-    // Handler function to confirm the delete action, hide the confirmation modal, and...
-    const confirmDeleteHandler = () =>{
-        setShowConfirmModal(false);
-        console.log("DELETING")
     }
 
     // The component's JSX code starts here

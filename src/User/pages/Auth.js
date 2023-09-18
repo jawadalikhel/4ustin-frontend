@@ -1,11 +1,14 @@
 import React, {useState, useContext} from "react";
 import {useForm} from "../../shared/hooks/form-hook";
 import {VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE} from "../../shared/util/validators";
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
 import { AuthContext } from "../../shared/context/auth-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 import "./Styles/Auth.css";
 
@@ -14,6 +17,8 @@ const Auth = () =>{
     const auth = useContext(AuthContext);
     // State to manage whether the user is in login mode or signup mode
     const [isLoginMode, setIsLoginMode] = useState(true);
+    const {isLoading, error, sendRequest, clearError} = useHttpClient();
+
 
     // Custom hook 'useForm' to manage the form state and form input validation
     const [formState, inputHandler, setFormData] = useForm({
@@ -47,15 +52,54 @@ const Auth = () =>{
     }
 
     // Function to handle form submission
-    const authSubmitHandler = (event) =>{
+    const authSubmitHandler = async (event) =>{
         event.preventDefault();
-        console.log(formState.inputs, "<--- form submit") // send this to backend
-        auth.login();
-    }
 
+        if(isLoginMode){
+            try {
+                const responseData = await sendRequest(
+                    'http://localhost:5000/api/users-auth/login', 
+                    'POST',
+                    JSON.stringify({
+                        email: formState.inputs.email.value,
+                        password: formState.inputs.password.value
+                    }),
+                    {
+                        'Content-Type': 'application/json'
+                    }
+                );
+                auth.login(responseData.user.id);
+            } catch (err) {
+                // console.log(err.messsage);
+            }
+            
+        }else{
+            try {
+                const responseData = await sendRequest(
+                    'http://localhost:5000/api/users-auth/signup',
+                    'POST',
+                    JSON.stringify({
+                        name: formState.inputs.name.value,
+                        email: formState.inputs.email.value,
+                        password: formState.inputs.password.value
+                    }),   
+                    {
+                        'Content-Type': 'application/json'
+                    }
+                );
+
+                auth.login(responseData.user.id);
+            } catch (err) {
+                // console.log(err.messsage);
+            }
+        }
+    }
     
     return(
+        <React.Fragment>
+            <ErrorModal error={error} onClear={clearError}/>
         <Card className="authentication">
+                {isLoading ? <LoadingSpinner asOverlay={true} /> : null}
             <h2>Login Required</h2>
             <hr />
             <form onSubmit={authSubmitHandler} className="">
@@ -102,6 +146,7 @@ const Auth = () =>{
                 SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
             </Button>
         </Card>
+        </React.Fragment>
     )
 }
 

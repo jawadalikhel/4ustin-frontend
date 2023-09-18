@@ -5,8 +5,8 @@ import SavedPlacesItem from "./SavedPlacesItem";
 import "../Styles/SavedPlacesList.css";
 
 const SavedPlacesList = (props) =>{
-    // If the "items" prop is an empty array, display a message and a button to create a new place
-    if(props.placesData.length === 0){
+    //If the "items" prop is an empty array, display a message and a button to create a new place
+    if(props.placesData.length === 0 || props.placesData === undefined){
         return(
             <div className="place-list center">
                 <Card>
@@ -24,6 +24,7 @@ const SavedPlacesList = (props) =>{
                 props.placesData.map((resturant) =>{
                     return (
                         <SavedPlacesItem 
+                            key={resturant.id}
                             name={resturant.name}
                             photo = {resturant.photo}
                             Rating = {resturant.rating}

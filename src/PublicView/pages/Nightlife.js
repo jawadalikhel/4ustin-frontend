@@ -6,7 +6,7 @@ import Button from "../../shared/components/FormElements/Button";
 import useFilterModalHook from "../../shared/hooks/useFilterModalHook";
 import {CITY_NAME, NIGHTLIFE_CATEGORY_NAMES} from "../../shared/resources/placeHolderDatas/PlacesQueryData";
 
-
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import "./Styles/AllPlacesStyle.css";
 
 const Nightlife = () =>{
@@ -45,7 +45,7 @@ const Nightlife = () =>{
               {FilterModalComponent}
             </div>
             {
-                placesData !== null ? <PlacesToEatList placesData={placesData}/> : <p className="place-loading">Loading...</p>
+                placesData !== null ? <PlacesToEatList placesData={placesData}/> : <LoadingSpinner asOverlay={true} />
             }
         </div>
     )

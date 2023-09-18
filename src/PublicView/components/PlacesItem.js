@@ -1,11 +1,13 @@
 // Importing necessary modules from React and custom components
 import React, {useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
-
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
 import Map from "../../shared/components/UIElements/Map";
 import {AuthContext} from "../../shared/context/auth-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 // Importing CSS styles for the component
 import "./Styles/PlacesItem.css"
@@ -17,6 +19,8 @@ const PlaceItem = (props) =>{
     const navigate = useNavigate();
     // Using the React Hook "useState" to create two state variables: "showMap" and "showConfirmModal"
     const [showMap, setShowMap] = useState(false);
+    const {isLoading, error, sendRequest, clearError} = useHttpClient();
+
 
     // Handler function to open the map modal
     const openMapHandler = () =>{
@@ -27,14 +31,40 @@ const PlaceItem = (props) =>{
     const closeMapHandler = () =>{
         setShowMap(false);
     }
+    
 
-    const addToFavoriteHandler = () =>{
+    const addToFavoriteHandler = async (e) =>{
         if(!auth.isLoggedIn){
             if(window.confirm("You Need to login to Add to Favorites")){
                 navigate("/auth");
             }            
+        }else{
+            try {
+                alert("Place Added To Your Favorites")
+                console.log(auth.userId, "<----- auth.userId")
+                await sendRequest(
+                    'http://localhost:5000/api/favorites/user/addToFavorites', 
+                    'POST',
+                    JSON.stringify({
+                        name: props.name,
+                        photo: props.photo,
+                        rating: props.Rating,
+                        userRatingTotal: props.userRatingTotal,
+                        address: props.address,
+                        coordinates: props.location,
+                        creator: auth.userId
+                    }),
+                    {
+                        'Content-Type': 'application/json'
+                    }
+                );
+
+                // redirect the user to a different page
+            } catch (error) {
+                
+            }
         }
-        alert("Place Added To Your Favorites")
+        
     }
 
     // The component's JSX code starts here

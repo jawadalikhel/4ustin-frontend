@@ -9,11 +9,8 @@ const useGeolocation = () => {
     const getUserGeoLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-            // console.log(position, "<---- position")
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude
-            // const { latitude, longitude } = position.coords;
-            console.log(latitude + " " + longitude, "<---- latitude + longitude")
             setLocation({ latitude, longitude });
           },
           error => {

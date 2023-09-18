@@ -5,6 +5,7 @@ import PlacesList from "../components/PlacesList";
 import useFilterModalHook from "../../shared/hooks/useFilterModalHook";
 import {CITY_NAME, PLACESTOEAT_CATEGORY_NAMES, AUSTINITE_INFO} from "../../shared/resources/placeHolderDatas/PlacesQueryData";
 
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import "./Styles/AllPlacesStyle.css";
 
 
@@ -56,7 +57,7 @@ const Austinite = () =>{
                 <h2 style={{"borderBottom": "2px solid #5CA6FD", "textAlign": "center"}}>Developer's Favorites:</h2>
               </div>
               {
-                  placesData !== null ? <PlacesList placesData={placesData}/> : <p className="place-loading">Loading...</p>
+                  placesData !== null ? <PlacesList placesData={placesData}/> : <LoadingSpinner asOverlay={true} />
               }
           </div>
         </React.Fragment>

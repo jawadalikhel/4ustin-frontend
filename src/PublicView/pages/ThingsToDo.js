@@ -4,7 +4,9 @@ import { fetchNearbyPlaces } from "../../shared/apis/apiService";
 import {CITY_NAME} from "../../shared/resources/placeHolderDatas/PlacesQueryData";
 import PlacesList from "../components/PlacesList";
 
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import "./Styles/AllPlacesStyle.css";
+
 const ThingsToDo = () =>{
     const [placesData, setPlacesData] = useState(null);
     const { location, error } = geoLocationHook();
@@ -32,7 +34,7 @@ const ThingsToDo = () =>{
               <h1>Things To Do</h1>
             </div>
             {
-                placesData !== null ? <PlacesList placesData={placesData}/> : <p className="place-loading">Loading...</p>
+                placesData !== null ? <PlacesList placesData={placesData}/> : <LoadingSpinner asOverlay={true} />
             }
         </div>
     )

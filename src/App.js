@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from "react";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import LandingPage from "./PublicView/pages/LandingPage";
@@ -19,19 +19,23 @@ import PlanMyVisit from "./User/pages/PlanMyVisit";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(); 
+
   const navigate = useNavigate();
 
-  const login = useCallback(() => {
+  const login = useCallback((uid) => {
     setIsLoggedIn(true);
-    navigate("/planMyVisit")
+    setUserId(uid);
+    navigate(`/planMyVisit/${uid}`)
   }, [navigate])
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
+    setUserId(null);
   }, [])
 
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout:logout}}>
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, userId: userId, login: login, logout:logout}}>
       <div>
         <MainNavigation/>
         {
@@ -46,7 +50,7 @@ export default function App() {
             <Route path='/visitLikeAustinite' element={<Austinite/>} />
             <Route path='/submitPictures' element={<SubmitPictures/>} />
             <Route path='/news' element={<News/>} />
-            <Route path='/planMyVisit' element={<PlanMyVisit/>} />
+            <Route path='/planMyVisit/:userId' element={<PlanMyVisit/>} exact/>
           </Routes>
 
         :
@@ -62,7 +66,7 @@ export default function App() {
           <Route path='/news' element={<News/>} />
           <Route path="/auth" element={<Auth />} />
           {/* Redirect the user to auth route if not loggedin */}
-          <Route path="/planMyVisit" element={<Navigate replace to="/auth" />}/>
+          <Route path="/planMyVisit/:userId" element={<Navigate replace to="/auth" />}/>
         </Routes>
         }
       </div>

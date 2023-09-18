@@ -1,78 +1,48 @@
-import React from "react";
+import React, {useEffect, useContext, useState} from "react";
+import {useParams} from 'react-router-dom';
+import ErrorModal from "../../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner";
+
+import { useHttpClient } from "../../../shared/hooks/http-hook";
 import SavedPlacesList from "./SavedPlacesList";
 
-const DUMMY_DATA = [
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "001",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "002",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "003",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "004",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "005",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "003",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "004",
-        address: "1100 E Oltorf St"
-    },
-    {
-        name: "Salty Sow",
-        photo: "AUacShjCg0rN84dA1SxSvAyI9BpkXEC77KqQwvgYjF6XH0hfYikplMdqc5WBgCHlALj6AlX_aXIQEOhY1ErHbB0hw7KIlrXd4tPib-b4lSwGw7LodkRH7JiHuzBjDiDCguooL9b46uCrprrpi716l0nAAFzt33rqRn6fU3VREitS9lltBrr7",
-        rating: 4.6,
-        userRatigTotal: 2698,
-        id: "005",
-        address: "1100 E Oltorf St"
-    }
-]
 const SavedPlaces = () =>{
+    const [loadedPlaces, setLoadedPlaces] = useState([]);
+    const {isLoading, error, sendRequest, clearError} = useHttpClient();
+
+    const userId = useParams().userId;
+
+    useEffect(() => {
+        const fetchUserFavoritePlaces = async () => {
+          try {
+            const responseData = await sendRequest(
+              `http://localhost:5000/api/favorites/user/userFavoritePlaces/${userId}`
+            );
+    
+            setLoadedPlaces(responseData.favoritePlaces);
+          } catch (error) {
+            console.log(error, "<------- Error");
+          }
+        };
+        fetchUserFavoritePlaces();
+      }, [sendRequest, userId]);
+
     return(
-        <div>
-            <h1>My Favorite Places</h1>
-            <SavedPlacesList placesData={DUMMY_DATA} />
-        </div>
+        <React.Fragment>
+            <ErrorModal error={error} onClear={clearError} />
+            
+            {isLoading ? (
+                <div className="center">
+                    <LoadingSpinner />
+                </div>
+            ) : null}
+            {!isLoading && loadedPlaces ? (
+                <div>
+                    <h1>My Favorite Places</h1>
+                    <SavedPlacesList placesData={loadedPlaces} />
+                </div>
+            ) : null}
+        </React.Fragment>
     )
 }
 
