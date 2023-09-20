@@ -18,7 +18,6 @@ const SavedPlaces = () =>{
             const responseData = await sendRequest(
               `http://localhost:5000/api/favorites/user/userFavoritePlaces/${userId}`
             );
-    
             setLoadedPlaces(responseData.favoritePlaces);
           } catch (error) {
             console.log(error, "<------- Error");

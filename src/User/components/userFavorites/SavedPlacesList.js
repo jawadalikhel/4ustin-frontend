@@ -5,13 +5,12 @@ import SavedPlacesItem from "./SavedPlacesItem";
 import "../Styles/SavedPlacesList.css";
 
 const SavedPlacesList = (props) =>{
+
     //If the "items" prop is an empty array, display a message and a button to create a new place
     if(props.placesData.length === 0 || props.placesData === undefined){
         return(
             <div className="place-list center">
-                <Card>
-                    <h2>No Data Found.</h2>
-                </Card>
+                    <p>No Favorite Places Found.</p>
             </div>
         )
     }
@@ -29,7 +28,7 @@ const SavedPlacesList = (props) =>{
                             photo = {resturant.photo}
                             Rating = {resturant.rating}
                             userRatingTotal ={resturant.userRatingTotal}
-                            location = {resturant.location}
+                            coordinates = {resturant.coordinates}
                             id={resturant.id} 
                             address={resturant.address}
                             onDelete={props.onDeletePlace}

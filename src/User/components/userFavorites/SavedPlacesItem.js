@@ -73,7 +73,7 @@ const SavedPlacesItem = (props) =>{
             >
                 <div className="map-container">
                     {/* Displaying the map using the Map component with the coordinates provided */}
-                    <Map center={props.location} zoom={17}/>
+                    <Map center={props.coordinates} zoom={17}/>
                 </div>
             </Modal>
 
