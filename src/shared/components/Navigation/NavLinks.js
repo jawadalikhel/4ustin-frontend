@@ -34,6 +34,7 @@ const NavLinks = () =>{
                 auth.isLoggedIn ?  
                 <li>
                     <NavLink to={`/planMyVisit/${auth.userId}`}>PLAN MY VISIT</NavLink>
+                    <NavLink to={''}>LOGOUT</NavLink>
                 </li> :
                  <li>
                     <NavLink to="/auth">PLAN MY VISIT</NavLink>
