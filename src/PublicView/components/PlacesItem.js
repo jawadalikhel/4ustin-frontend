@@ -1,8 +1,6 @@
 // Importing necessary modules from React and custom components
 import React, {useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
 import Map from "../../shared/components/UIElements/Map";
@@ -53,9 +51,13 @@ const PlaceItem = (props) =>{
                         creator: auth.userId
                     }),
                     {
-                        'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + auth.token
+                    },
                 );
+                
+                let path = `${window.location.pathname}`; 
+                navigate(path);
 
                 // redirect the user to a different page
             } catch (error) {

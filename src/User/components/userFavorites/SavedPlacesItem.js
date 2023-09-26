@@ -1,6 +1,6 @@
 // Importing necessary modules from React and custom components
-import React, {useCallback, useState} from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, {useCallback, useContext, useState} from "react";
+import { AuthContext } from "../../../shared/context/auth-context";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import Button from "../../../shared/components/FormElements/Button";
 import ErrorModal from "../../../shared/components/UIElements/ErrorModal";
@@ -13,14 +13,13 @@ import "../Styles/SavedPlacesItem.css"
 
 //component "PlaceItem" takes props as input
 const SavedPlacesItem = (props) =>{
+    const auth = useContext(AuthContext);
     // Using the React Hook "useState" to create two state variables: "showMap" and "showConfirmModal"
     const [showMap, setShowMap] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const {isLoading, error, sendRequest, clearError} = useHttpClient();
 
-    const userId = useParams().userId;
 
-    const navigate = useNavigate();
     // Handler function to open the map modal
     const openMapHandler = () =>{
         setShowMap(true);
@@ -44,7 +43,11 @@ const SavedPlacesItem = (props) =>{
         try {
             await sendRequest(
                 `http://localhost:5000/api/favorites/user/deletePlace/${props.id}`,
-                'DELETE'
+                'DELETE',
+                null,
+                {
+                    Authorization: 'Bearer ' + auth.token
+                }
             );
             props.onDelete(props.id);
         } catch (error) {

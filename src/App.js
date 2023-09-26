@@ -18,28 +18,28 @@ import { AuthContext } from "./shared/context/auth-context";
 import PlanMyVisit from "./User/pages/PlanMyVisit";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(); 
 
   const navigate = useNavigate();
 
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true);
+  const login = useCallback((uid, token) => {
+    setToken(token);
     setUserId(uid);
     navigate(`/planMyVisit/${uid}`)
   }, [navigate])
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
+    setToken(null);
     setUserId(null);
   }, [])
 
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, userId: userId, login: login, logout:logout}}>
+    <AuthContext.Provider value={{isLoggedIn: !!token, token: token, userId: userId, login: login, logout:logout}}>
       <div>
         <MainNavigation/>
         {
-          isLoggedIn ?
+          token ?
           <Routes>
             <Route path='/' element={<LandingPage/>} />
             <Route path='/eat' element={<PlacesToEat/>} />
