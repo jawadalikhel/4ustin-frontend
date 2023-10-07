@@ -8,8 +8,23 @@ li.savedPlacesItem-content{
   border: 2px solid black;
 }
 
-li.savedPlacesItem-content img,h2,h3 {
+.favPlace_item_image img {
+  /* Add styles for the restaurant image */
   width: 100%;
+  height: 250px; /* Adjust the image height as needed */
+  object-fit: cover;
+}
+
+.place_item_info {
+  /* Add styles for the restaurant info section */
+  padding: 10px;
+}
+
+.place_item_actions {
+  /* Add styles for the action buttons */
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 @media (max-width: 768px) {

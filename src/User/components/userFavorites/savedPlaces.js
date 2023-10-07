@@ -16,7 +16,7 @@ const SavedPlaces = () =>{
         const fetchUserFavoritePlaces = async () => {
           try {
             const responseData = await sendRequest(
-              `http://localhost:5000/api/favorites/user/userFavoritePlaces/${userId}`,
+                `${process.env.REACT_APP_BACKEND_URL}/favorites/user/userFavoritePlaces/${userId}`,
                 'GET',
                 null,
                 {
@@ -46,8 +46,10 @@ const SavedPlaces = () =>{
                 </div>
             ) : null}
             {!isLoading && loadedPlaces ? (
-                <div>
-                    <h1>My Favorite Places</h1>
+                <div className="place-container">
+                    <div className="place-heading">
+                      <h1>My Favorite Places</h1>
+                    </div>
                     <SavedPlacesList placesData={loadedPlaces} onDeletePlace={placeDeletedHandler} />
                 </div>
             ) : null}

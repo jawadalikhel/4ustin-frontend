@@ -39,7 +39,7 @@ const PlaceItem = (props) =>{
             try {
                 alert("Place Added To Your Favorites")
                 await sendRequest(
-                    'http://localhost:5000/api/favorites/user/addToFavorites', 
+                    process.env.REACT_APP_BACKEND_URL + '/favorites/user/addToFavorites', 
                     'POST',
                     JSON.stringify({
                         name: props.name,
@@ -48,7 +48,7 @@ const PlaceItem = (props) =>{
                         userRatingTotal: props.userRatingTotal,
                         address: props.address,
                         coordinates: props.location,
-                        creator: auth.userId
+                        // creator: auth.userId
                     }),
                     {
                         'Content-Type': 'application/json',
@@ -93,27 +93,27 @@ const PlaceItem = (props) =>{
             {/* The main content of the component */}
             <li className="place-flex-item" key={props.id}>
                 <div className="place-card">
-                <div className="place-flex--item_image">
-                    <img
-                    src={
-                        props.photo
-                        ? props.photo
-                        : null
-                    }
-                    alt={props.name}
-                    />
-                </div>
-                <div className="place-item_info">
-                    <h2>{props.name}</h2>
-                    <h3>
-                    {props.Rating}&#9734; ({props.userRatingTotal})
-                    </h3>
-                </div>
-                <div className="place-item_actions">
-                    <Button inverse onClick={openMapHandler}>
-                    VIEW IN MAP
-                    </Button>
-                </div>
+                    <div className="place-flex--item_image">
+                        <img
+                        src={
+                            props.photo
+                            ? props.photo
+                            : null
+                        }
+                        alt={props.name}
+                        />
+                    </div>
+                    <div className="place-item_info">
+                        <h2>{props.name}</h2>
+                        <h3>
+                        {props.Rating}&#9734; ({props.userRatingTotal})
+                        </h3>
+                    </div>
+                    <div className="place-item_actions">
+                        <Button inverse onClick={openMapHandler}>
+                        VIEW IN MAP
+                        </Button>
+                    </div>
                 </div>
             </li>
             

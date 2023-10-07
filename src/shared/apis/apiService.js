@@ -2,7 +2,7 @@
 export const fetchNearbyPlaces = async (latitude, longitude, selectedQueryFor, cityName) => {
 // try-catch block to handle any potential errors.
   try {
-    const response = await fetch('http://localhost:5000/api/places/fetchPlaces', {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/places/fetchPlaces', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ export const fetchNearbyPlaces = async (latitude, longitude, selectedQueryFor, c
         })                    
           });
     const responseData = await response.json();                
-        
+    console.log(responseData, "<----- responseData")
     if(!response.ok){
         throw new Error(responseData.messsage);
     }

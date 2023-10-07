@@ -42,7 +42,7 @@ const SavedPlacesItem = (props) =>{
         setShowDeleteModal(false);
         try {
             await sendRequest(
-                `http://localhost:5000/api/favorites/user/deletePlace/${props.id}`,
+                process.env.REACT_APP_BACKEND_URL + `/favorites/user/deletePlace/${props.id}`,
                 'DELETE',
                 null,
                 {
@@ -84,7 +84,7 @@ const SavedPlacesItem = (props) =>{
             <li className="savedPlacesItem-content" key={props.id}>
                 <div className="">
                     {isLoading ? <LoadingSpinner asOverlay /> : null}
-                    <div>
+                    <div className="favPlace_item_image">
                         <img
                         src={
                             props.photo
@@ -94,13 +94,13 @@ const SavedPlacesItem = (props) =>{
                         alt={props.name}
                         />
                     </div>
-                    <div>
+                    <div className="place-item_info">
                         <h2>{props.name}</h2>
                         <h3>
                         {props.Rating} ({props.userRatingTotal})
                         </h3>
                     </div>
-                    <div>
+                    <div className="place-item_actions">
                         <Button inverse onClick={openMapHandler}>
                         VIEW IN MAP
                         </Button>
