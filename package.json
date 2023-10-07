@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://maps.googleapis.com/maps/api/place",
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
     "@testing-library/jest-dom": "^5.17.0",

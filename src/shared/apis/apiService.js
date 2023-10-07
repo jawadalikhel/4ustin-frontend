@@ -5,7 +5,7 @@ export const fetchNearbyPlaces = async (latitude, longitude, selectedQueryFor, c
     const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/places/fetchPlaces', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             lat: latitude,
@@ -14,14 +14,14 @@ export const fetchNearbyPlaces = async (latitude, longitude, selectedQueryFor, c
             cityName: cityName
         })                    
           });
+
     const responseData = await response.json();                
-    console.log(responseData, "<----- responseData")
     if(!response.ok){
         throw new Error(responseData.messsage);
     }
 
     return responseData.places
   } catch (error) {
-    console.log(error, "<---- error in apiServices");
+    console.log(error.messsage, "<---- error in apiServices");
   }
 };
