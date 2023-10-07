@@ -28,7 +28,7 @@
 <p>
   4ustin is being developed with a responsive design approach, ensuring that the app will seamlessly adapt to various screen sizes and devices. Once completed, 4ustin will offer full support for both web and mobile platforms, providing users with a consistent and enjoyable experience across devices.
 </p>
-<a href="/">Live Demo</a>
+<a href="https://ustin-d97f8.web.app">Live Demo</a>
 
 <p>
   By creating 4ustin, I am in the process of successfully addressing the challenge of providing a user-friendly platform that caters to Austin enthusiasts and visitors alike. This ongoing project is a testament to my ability to transform ideas into practical applications that enhance user experiences.
