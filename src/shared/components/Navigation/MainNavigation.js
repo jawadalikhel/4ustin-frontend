@@ -44,7 +44,7 @@ const MainNavigation = (props) =>{
                 </button>
                     
                 <h1 className="main-navigation_title">
-                    <Link to="/">GoATX</Link> 
+                    <Link to="/">ATXGO</Link> 
                 </h1>
 
                 {/* The main navigation links */}

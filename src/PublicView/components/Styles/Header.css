@@ -7,6 +7,6 @@
 
 @media (max-width: 768px) {
     .header-image img {
-        margin-top: 16em;
+        /* margin-top: 16em; */
     }
 }

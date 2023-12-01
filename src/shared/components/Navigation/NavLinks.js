@@ -30,18 +30,6 @@ const NavLinks = () =>{
                 <NavLink to="/outdoors">OUTDOORS</NavLink>
             </li>
 
-            {
-                auth.isLoggedIn ?  
-                <li>
-                    <NavLink to={`/planMyVisit/${auth.userId}`}>PLAN MY VISIT</NavLink>
-                    <button onClick={auth.logout}>LOGOUT</button>
-                </li> :
-                 <li>
-                    <NavLink to="/auth">PLAN MY VISIT</NavLink>
-                </li>
-            }
-           
-
             <li className="mobile-screen">
                 <NavLink to="/thingsToDo">THINGS TO DO</NavLink>
             </li>
@@ -54,6 +42,17 @@ const NavLinks = () =>{
             <li className="mobile-screen">
                 <NavLink to="/news">NEWS</NavLink>
             </li>
+
+            {
+                auth.isLoggedIn ?  
+                <li id="planMyVisit">
+                    <NavLink to={`/planMyVisit/${auth.userId}`}>PLAN MY VISIT</NavLink>
+                    <button onClick={auth.logout}>LOGOUT</button>
+                </li> :
+                 <li id="planMyVisit">
+                    <NavLink to="/auth">PLAN MY VISIT</NavLink>
+                </li>
+            }
         </ul>
     )
 }

@@ -9,6 +9,14 @@
     justify-content: center;
     align-items: center;
   }
+
+  #planMyVisit a{
+    color: white;
+    background-color: rgb(250, 0, 0);
+    height: 2em;
+    border-radius: 30%;
+    font-weight: bolder;
+  }
   
   .nav-links li {
     margin: 1rem;
